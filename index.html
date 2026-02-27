@@ -27,7 +27,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;}
 .hirecar-logo-img.fade-out{opacity:0;}
 .hirecar-subtitle-text{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:#e31e2d;text-align:center;will-change:text-shadow,filter;text-shadow:0 0 10px rgba(227,30,45,.4),0 0 20px rgba(200,0,0,.2);transition:text-shadow 2.5s ease,filter 2.5s ease;margin-top:clamp(10px,2vw,20px);}
 .hirecar-subtitle-text.glow-red{text-shadow:0 0 10px #ff0000,0 0 25px #ff0000,0 0 55px #ff0000,0 0 110px rgba(255,0,0,1),0 0 220px rgba(255,0,0,.9),0 0 400px rgba(240,0,0,.7),0 0 650px rgba(200,0,0,.5),0 0 1000px rgba(170,0,0,.35),0 0 1400px rgba(140,0,0,.22),0 0 1800px rgba(120,0,0,.12),0 0 2200px rgba(100,0,0,.06);filter:brightness(3.5);}
-.cwk-logo-img{position:relative;z-index:10;width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 2s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));}
+.cwk-logo-img{position:relative;z-index:10;width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 3s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));will-change:opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
 .cwk-logo-img.visible{opacity:1;}
 .ph2-container{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;width:90vw;max-width:520px;}
 .ph2-access-label{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,2vw,15px);letter-spacing:clamp(3px,1vw,6px);color:#e31e2d;text-transform:uppercase;text-shadow:0 0 12px rgba(227,30,45,.5);margin:clamp(16px,3vw,28px) 0 clamp(12px,2vw,20px);opacity:0;transition:opacity 1.5s ease;}
@@ -724,7 +724,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
 
   /* ── MatrixRain: Bidirectional explosion from center ── */
   var MatrixRain={
-    _speed:0.15,
+    _speed:0.08,
     _raf:null,
     _canvasEl:null,
     _ctx:null,
@@ -1007,16 +1007,6 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     if(digit.value&&index<4)digits[index+1].focus();
 
     var entered=digits.map(function(d){return d.value;}).join('');
-    var correctSoFar=true;
-    for(var c=0;c<entered.length;c++){
-      if(entered[c]!==PIN[c]){correctSoFar=false;break;}
-    }
-
-    /* On 3rd correct digit, speed up the rain */
-    if(correctSoFar&&entered.length>=3&&rain){
-      rain.setSpeed(0.8+entered.length*0.4);
-    }
-
     if(entered.length===5)verify(entered);
   }
 
@@ -1024,21 +1014,20 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     if(e.key==='Backspace'&&!digit.value&&index>0){
       digits[index-1].value='';
       digits[index-1].focus();
-      /* Slow rain back down if deleting */
-      var entered=digits.map(function(d){return d.value;}).join('');
-      if(rain&&entered.length<3)rain.setSpeed(0.4);
     }
   }
 
   function resetPin(){
     digits.forEach(function(d){d.value='';d.classList.remove('state-wrong','state-correct');});
     errorEl.textContent='';
-    if(rain)rain.setSpeed(0.4);
   }
 
   function verify(entered){
     if(timingSafeEqual(entered,PIN)){
       digits.forEach(function(d){d.classList.add('state-correct');});
+      /* Dismiss keyboard immediately */
+      digits.forEach(function(d){d.blur();d.readOnly=true;});
+      if(document.activeElement)document.activeElement.blur();
       setTimeout(function(){unlock();},520);
     }else{
       attempts++;
@@ -1066,32 +1055,57 @@ textarea.ev-input{min-height:80px;resize:vertical;}
 
     var target='ACCESS GRANTED';
     var charSets=[
-      '\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD',
-      '\u4E16\u754C\u81EA\u7531\u5B89\u5168\u6388\u6743\u9A8C\u8BC1\u7CFB\u7EDF\u8BBF\u95EE',
+      '\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8\u30CA\u30CB\u30CC\u30CD\u30CE',
+      '\u4E16\u754C\u81EA\u7531\u5B89\u5168\u6388\u6743\u9A8C\u8BC1\u7CFB\u7EDF\u8BBF\u95EE\u6570\u636E\u7F51\u7EDC\u52A0\u5BC6',
+      '\u0410\u0411\u0412\u0413\u0414\u0415\u0416\u0417\u0418\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422',
+      '\u0623\u0628\u062A\u062B\u062C\u062D\u062E\u062F\u0630\u0631\u0632\u0633\u0634\u0635\u0636\u0637\u0638\u0639',
+      '\u0E01\u0E02\u0E04\u0E07\u0E08\u0E09\u0E0A\u0E0B\u0E0C\u0E0D\u0E0E\u0E0F\u0E10\u0E11\u0E12\u0E13',
+      '\u0915\u0916\u0917\u0918\u0919\u091A\u091B\u091C\u091D\u091E\u091F\u0920\u0921\u0922\u0923\u0924',
+      '\uAC00\uAC01\uAC04\uAC07\uAC08\uAC09\uAC0A\uAC10\uAC11\uAC12\uAC13\uAC14\uAC15\uAC16\uAC17\uAC19',
       'ABCDEF0123456789'
     ];
     var currentSet=0,resolved=[],display=[],spinCount=[];
     for(var x=0;x<target.length;x++){resolved.push(false);display.push('');spinCount.push(0);}
+
+    /* Gradually slow rain during ACCESS GRANTED calibration */
+    var rainSlowIv=null;
+    if(rain){
+      var currentRainSpeed=rain._speed;
+      rainSlowIv=setInterval(function(){
+        currentRainSpeed*=0.92;
+        if(currentRainSpeed<0.005){
+          currentRainSpeed=0;
+          clearInterval(rainSlowIv);
+          rain.stop();
+        }else{
+          rain._speed=currentRainSpeed;
+          rain._bgAlpha=Math.max(0.02,currentRainSpeed*0.3);
+        }
+      },120);
+    }
+
     setTimeout(function(){glitchEl.style.opacity='1';},200);
     var cascadeIv=setInterval(function(){
       var allDone=true;
-      if(Math.random()<0.3)currentSet=(currentSet+1)%charSets.length;
+      if(Math.random()<0.4)currentSet=(currentSet+1)%charSets.length;
       var chars=charSets[currentSet];
       for(var i=0;i<target.length;i++){
         if(target[i]===' '){display[i]='\u00A0';resolved[i]=true;continue;}
         if(!resolved[i]){
           spinCount[i]++;
-          if(spinCount[i]>(18+i*3)&&Math.random()<0.08){resolved[i]=true;display[i]=target[i];}
+          if(spinCount[i]>(35+i*5)&&Math.random()<0.05){resolved[i]=true;display[i]=target[i];}
           else{display[i]=chars[Math.floor(Math.random()*chars.length)];allDone=false;}
         }
       }
       glitchEl.textContent=display.join('');
       if(allDone){
         clearInterval(cascadeIv);
+        if(rainSlowIv)clearInterval(rainSlowIv);
+        if(rain)rain.stop();
         glitchEl.style.textShadow='0 0 60px rgba(227,30,45,.8),0 0 120px rgba(227,30,45,.3)';
         setTimeout(function(){showWelcome();},1200);
       }
-    },45);
+    },50);
   }
 
   /* ── Welcome Screen ── */
