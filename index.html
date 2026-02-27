@@ -27,9 +27,9 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;}
 .hirecar-logo-img.fade-out{opacity:0;}
 .hirecar-subtitle-text{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:rgba(255,255,255,.85);text-align:center;will-change:color,text-shadow,filter;transition:color 2s ease,text-shadow 2.5s ease,filter 2s ease;margin-top:clamp(10px,2vw,20px);}
 .hirecar-subtitle-text.glow-red{color:#ff0000;text-shadow:0 0 20px #ff0000,0 0 40px #ff0000,0 0 80px rgba(255,0,0,.9),0 0 160px rgba(255,0,0,.8),0 0 300px rgba(200,0,0,.6),0 0 500px rgba(180,0,0,.4),0 0 800px rgba(150,0,0,.25),0 0 1200px rgba(120,0,0,.12);filter:brightness(3);}
-.cwk-logo-img{position:relative;z-index:10;width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 2s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));}
+.cwk-logo-img{position:fixed;z-index:10;top:50%;left:50%;transform:translate(-50%,-55%);width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 2s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));}
 .cwk-logo-img.visible{opacity:1;}
-.ph2-container{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;width:90vw;max-width:520px;}
+.ph2-container{position:absolute;z-index:10;bottom:clamp(12vh,18vh,24vh);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;width:90vw;max-width:520px;}
 .ph2-access-label{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,2vw,15px);letter-spacing:clamp(3px,1vw,6px);color:#e31e2d;text-transform:uppercase;text-shadow:0 0 12px rgba(227,30,45,.5);margin:clamp(16px,3vw,28px) 0 clamp(12px,2vw,20px);opacity:0;transition:opacity 1.5s ease;}
 .ph2-access-label.visible{opacity:1;}
 .ph2-pin-row{display:flex;justify-content:center;align-items:center;gap:clamp(8px,2vw,16px);width:100%;opacity:0;transition:opacity 1.5s ease;}
@@ -950,11 +950,10 @@ textarea.ev-input{min-height:80px;resize:vertical;}
      0.0s  Black screen, HIRECAR white logo + "MEMBER SERVICES" white
      1.5s  "MEMBER SERVICES" intensifies red (letters radiate ambient light)
      5.0s  HIRECAR logo particle disintegration
-     5.5s  Red rain EXPLODES from center (up + down, few drops, expands)
+     5.5s  CWK logo dissolves in at HIRECAR's position + rain EXPLODES from center
      6.5s  Subtitle text fades out
-     10.8s +CreditWithKen logo fades in
-     13.8s "ENTER ACCESS CODE" dissolves in (3s after CWK)
-     14.3s PIN inputs dissolve in
+     8.5s  "ENTER ACCESS CODE" dissolves in (3s after CWK)
+     9.0s  PIN inputs dissolve in
   ═══════════════════════════════════════ */
 
   /* 1.5s — "MEMBER SERVICES" intensifies red (text-shadow radiates ambient light) */
@@ -984,22 +983,22 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     titleOverlay.style.display='none';
   },8000);
 
-  /* 10.8s — CWK logo fades in slowly */
+  /* 5.5s — CWK logo dissolves in right behind HIRECAR disintegration */
   setTimeout(function(){
     if(cwkLogo)cwkLogo.classList.add('visible');
-  },10800);
+  },5500);
 
-  /* 13.8s — "ENTER ACCESS CODE" dissolves in (3s after CWK) */
+  /* 8.5s — "ENTER ACCESS CODE" dissolves in (3s after CWK) */
   setTimeout(function(){
     labelEl.textContent='ENTER ACCESS CODE';
     labelEl.classList.add('visible');
-  },13800);
+  },8500);
 
-  /* 14.3s — PIN inputs dissolve in */
+  /* 9.0s — PIN inputs dissolve in */
   setTimeout(function(){
     pinRow.classList.add('visible');
     setTimeout(function(){if(digits[0])digits[0].focus();},400);
-  },14300);
+  },9000);
 
   /* ── PIN Input Logic ── */
   function onInput(digit,index){
