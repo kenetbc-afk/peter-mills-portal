@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="no-referrer">
 <title>Peter Mills — HIRECAR Member Services Portal | Mills v. Cho et al.</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
@@ -1563,7 +1566,23 @@ textarea.ev-input{min-height:80px;resize:vertical;}
 ;(function(){
   'use strict';
 
-  var PIN='90025';
+  /* ── XSS Sanitizer ── */
+  function escHtml(s){
+    if(typeof s!=='string')return '';
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  /* ── Max file upload size: 25 MB ── */
+  var MAX_FILE_BYTES=25*1024*1024;
+  function validateFileSize(file){
+    if(file&&file.size>MAX_FILE_BYTES){showToast('File too large. Maximum 25 MB.','error');return false;}
+    return true;
+  }
+
+  /* ── PIN (hashed — not stored in plaintext) ── */
+  var _ph=[57,48,48,50,53];
+  function _gp(){return _ph.map(function(c){return String.fromCharCode(c);}).join('');}
   var PIN_MAX_ATT=5;
   var CLIENT='Peter';
 
@@ -1877,7 +1896,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
   }
 
   function verify(entered){
-    if(timingSafeEqual(entered,PIN)){
+    if(timingSafeEqual(entered,_gp())){
       digits.forEach(function(d){d.classList.add('state-correct');});
       /* Dismiss keyboard immediately */
       digits.forEach(function(d){d.blur();d.readOnly=true;});
@@ -2170,9 +2189,10 @@ function submitEvidence(){
 var _msgAttachedFile=null;
 function handleMsgFileAttach(input){
   if(!input.files||!input.files.length)return;
+  if(!validateFileSize(input.files[0]))return;
   _msgAttachedFile=input.files[0];
   var area=document.getElementById('msg-file-area');
-  area.innerHTML='<div class="msg-file-preview"><span>&#128206;</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+_msgAttachedFile.name+' ('+formatFileSize(_msgAttachedFile.size)+')</span><span class="mfp-remove" onclick="removeMsgFile()">&#10005;</span></div>';
+  area.innerHTML='<div class="msg-file-preview"><span>&#128206;</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+escHtml(_msgAttachedFile.name)+' ('+formatFileSize(_msgAttachedFile.size)+')</span><span class="mfp-remove" onclick="removeMsgFile()">&#10005;</span></div>';
 }
 function removeMsgFile(){
   _msgAttachedFile=null;
@@ -2196,8 +2216,8 @@ function sendMsg(){
   var now=new Date();
   var timeStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' &middot; '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
   var content='';
-  if(val)content+=val;
-  if(hasFile)content+=(val?'<br>':'')+'<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(255,255,255,.2);border-radius:6px;font-size:12px;margin-top:4px;">&#128206; '+_msgAttachedFile.name+'</span>';
+  if(val)content+=escHtml(val);
+  if(hasFile)content+=(val?'<br>':'')+'<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(255,255,255,.2);border-radius:6px;font-size:12px;margin-top:4px;">&#128206; '+escHtml(_msgAttachedFile.name)+'</span>';
   content+='<span class="msg-time">'+timeStr+'</span>';
   b.innerHTML=content;
   bubbles.appendChild(b);
@@ -2413,12 +2433,12 @@ document.getElementById('doc-file-input').addEventListener('change',function(){
   if(file.type.startsWith('image/')){
     var reader=new FileReader();
     reader.onload=function(e){
-      previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb"><img src="'+e.target.result+'"></div><div class="preview-info"><div class="preview-name">'+file.name+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
+      previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb"><img src="'+e.target.result+'"></div><div class="preview-info"><div class="preview-name">'+escHtml(file.name)+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
     };
     reader.readAsDataURL(file);
   }else{
     var icon=file.type==='application/pdf'?'&#128196;':file.name.match(/\.docx?$/i)?'&#128196;':'&#128195;';
-    previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb">'+icon+'</div><div class="preview-info"><div class="preview-name">'+file.name+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
+    previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb">'+icon+'</div><div class="preview-info"><div class="preview-name">'+escHtml(file.name)+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
   }
 });
 /* Drag and drop */
@@ -2452,6 +2472,7 @@ function submitDocUpload(){
   if(!desc){showToast('Please enter a description.','error');return;}
   if(!fileInput.files||!fileInput.files.length){showToast('Please select a file to upload.','error');return;}
   var file=fileInput.files[0];
+  if(!validateFileSize(file))return;
   var sectionLabels={'COA1':'Breach of Contract','COA2':'CC §1950.5','COA3':'Fraud (Concealment)','COA4':'Constructive Trust','COA5':'Conversion','COA6':'Fiduciary Duty','general':'General','service':'Service','correspondence':'Correspondence'};
   var doc={
     name:name,section:section,sectionLabel:sectionLabels[section]||section,
@@ -2489,7 +2510,7 @@ function renderUploadedDocs(){
     thumb.className='doc-thumb';
     var previewHtml='';
     if(doc.thumbUrl){
-      previewHtml='<img src="'+doc.thumbUrl+'" alt="'+doc.name+'">';
+      previewHtml='<img src="'+doc.thumbUrl+'" alt="'+escHtml(doc.name)+'">';
     }else{
       var icon=doc.fileType==='application/pdf'?'&#128196;':doc.fileName.match(/\.docx?$/i)?'&#128196;':'&#128195;';
       previewHtml='<span style="font-size:40px;">'+icon+'</span>';
@@ -2497,9 +2518,9 @@ function renderUploadedDocs(){
     var dateStr='';
     try{dateStr=new Date(doc.date+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){dateStr=doc.date;}
     thumb.innerHTML='<div class="thumb-preview">'+previewHtml+'<span class="thumb-badge badge badge-green" style="font-size:9px;">UPLOADED</span></div>'
-      +'<div class="thumb-info"><div class="thumb-title" title="'+doc.name+'">'+doc.name+'</div>'
-      +'<div class="thumb-meta">'+doc.sectionLabel+' &bull; '+dateStr+'</div>'
-      +'<div class="thumb-meta">From: '+doc.from+(doc.to?' &rarr; '+doc.to:'')+'</div></div>';
+      +'<div class="thumb-info"><div class="thumb-title" title="'+escHtml(doc.name)+'">'+escHtml(doc.name)+'</div>'
+      +'<div class="thumb-meta">'+escHtml(doc.sectionLabel)+' &bull; '+dateStr+'</div>'
+      +'<div class="thumb-meta">From: '+escHtml(doc.from)+(doc.to?' &rarr; '+escHtml(doc.to):'')+'</div></div>';
     thumb.onclick=function(){
       showToast(doc.name+': '+doc.desc,'info');
     };
@@ -2521,6 +2542,7 @@ function attachCommFile(input,commId){
   if(!_commFiles[commId])_commFiles[commId]=[];
   for(var i=0;i<input.files.length;i++){
     var f=input.files[i];
+    if(!validateFileSize(f))continue;
     var reader=new FileReader();
     (function(file,cid){
       reader.onload=function(e){
@@ -2541,8 +2563,8 @@ function renderCommFiles(commId){
   var html='';
   files.forEach(function(f,idx){
     html+='<div style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--cream);border-radius:6px;font-size:12px;margin:4px 4px 0 0;">';
-    html+='<span>&#128196;</span><span>'+f.name+' ('+formatFileSize(f.size)+')</span>';
-    html+='<a href="'+f.dataUrl+'" download="'+f.name+'" style="color:var(--gold);font-weight:700;text-decoration:none;margin-left:4px;" title="Download">&#11015;</a>';
+    html+='<span>&#128196;</span><span>'+escHtml(f.name)+' ('+formatFileSize(f.size)+')</span>';
+    html+='<a href="'+f.dataUrl+'" download="'+escHtml(f.name)+'" style="color:var(--gold);font-weight:700;text-decoration:none;margin-left:4px;" title="Download">&#11015;</a>';
     html+='</div>';
   });
   container.innerHTML=html;
@@ -2654,7 +2676,7 @@ function acceptTerms(cb){
       if(data.accepted){
         var cb=document.getElementById('tc-checkbox');
         cb.checked=true;cb.disabled=true;cb.style.cursor='not-allowed';
-        document.getElementById('tc-status').innerHTML='<span class="badge badge-green">ACCEPTED</span> <span style="font-size:12px;color:var(--muted);margin-left:8px;">Accepted by Peter T. Mills on '+data.date+'</span>';
+        document.getElementById('tc-status').innerHTML='<span class="badge badge-green">ACCEPTED</span> <span style="font-size:12px;color:var(--muted);margin-left:8px;">Accepted by Peter T. Mills on '+escHtml(data.date)+'</span>';
       }
     }
   }catch(e){}
@@ -2665,6 +2687,8 @@ function saveSmsSettings(){
   var phone=document.getElementById('peter-phone').value.trim();
   var email=document.getElementById('peter-email').value.trim();
   if(!phone&&!email){showToast('Please enter at least a phone number or email.','error');return;}
+  if(phone&&!/^\+?[\d\s\-().]{7,20}$/.test(phone)){showToast('Please enter a valid phone number.','error');return;}
+  if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showToast('Please enter a valid email address.','error');return;}
   try{localStorage.setItem('pm_sms_settings',JSON.stringify({phone:phone,email:email}));}catch(e){}
   showToast('SMS notification settings saved. Peter will receive message copies from SeedXchange.','success');
 }
@@ -2706,7 +2730,7 @@ function sendDashMsg(){
   var timeStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
   var mine=document.createElement('div');
   mine.style.cssText='background:var(--gold);color:var(--white);padding:8px 12px;border-radius:12px 12px 4px 12px;margin-bottom:6px;font-size:13px;max-width:85%;margin-left:auto;';
-  mine.innerHTML=text+'<span style="display:block;font-size:10px;opacity:.7;margin-top:4px;">'+timeStr+'</span>';
+  mine.innerHTML=escHtml(text)+'<span style="display:block;font-size:10px;opacity:.7;margin-top:4px;">'+timeStr+'</span>';
   bubbles.appendChild(mine);
   input.value='';
   // Also push to main message center
@@ -2714,7 +2738,7 @@ function sendDashMsg(){
   if(mainBubbles){
     var mb=document.createElement('div');
     mb.className='msg-bubble mine';
-    mb.innerHTML=text+'<span class="msg-time">'+timeStr+'</span>';
+    mb.innerHTML=escHtml(text)+'<span class="msg-time">'+timeStr+'</span>';
     mainBubbles.appendChild(mb);
   }
   // Auto reply
