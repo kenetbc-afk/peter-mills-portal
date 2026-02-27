@@ -25,8 +25,8 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;}
 .hirecar-title-overlay{position:absolute;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1.2vw,14px);pointer-events:none;}
 .hirecar-logo-img{width:clamp(280px,65vw,700px);max-width:90vw;height:auto;filter:brightness(0) invert(1);will-change:opacity;transition:opacity 1.5s ease-out;}
 .hirecar-logo-img.fade-out{opacity:0;}
-.hirecar-subtitle-text{font-family:'DM Sans',sans-serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:rgba(255,255,255,.85);text-align:center;will-change:color,text-shadow,filter,transform;transition:color 2s ease,text-shadow 2s ease,filter 2s ease,transform 3s cubic-bezier(0.2,0.8,0.3,1);margin-top:clamp(10px,2vw,20px);}
-.hirecar-subtitle-text.glow-red{color:#ff0000;text-shadow:0 0 40px rgba(255,10,10,1),0 0 90px rgba(255,20,20,1),0 0 180px rgba(227,30,45,.95),0 0 300px rgba(200,0,0,.8),0 0 450px rgba(180,0,0,.5),0 0 650px rgba(160,0,0,.3),0 0 900px rgba(140,0,0,.15);filter:brightness(2.5);transform:scale(1.5);}
+.hirecar-subtitle-text{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:rgba(255,255,255,.85);text-align:center;will-change:color,text-shadow,filter;transition:color 2s ease,text-shadow 2.5s ease,filter 2s ease;margin-top:clamp(10px,2vw,20px);}
+.hirecar-subtitle-text.glow-red{color:#ff0000;text-shadow:0 0 20px #ff0000,0 0 40px #ff0000,0 0 80px rgba(255,0,0,.9),0 0 160px rgba(255,0,0,.8),0 0 300px rgba(200,0,0,.6),0 0 500px rgba(180,0,0,.4),0 0 800px rgba(150,0,0,.25),0 0 1200px rgba(120,0,0,.12);filter:brightness(3);}
 .cwk-logo-img{position:relative;z-index:10;width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 2s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));}
 .cwk-logo-img.visible{opacity:1;}
 .ph2-container{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;width:90vw;max-width:520px;}
@@ -722,7 +722,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
   }
   function sanitizeDigit(s){return String(s).replace(/[^0-9]/g,'').slice(0,1);}
 
-  /* ── MatrixRain: Center-outward, starts slow with few drops ── */
+  /* ── MatrixRain: Bidirectional explosion from center ── */
   var MatrixRain={
     _speed:0.15,
     _raf:null,
@@ -737,7 +737,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     _expandIv:null,
     _fontSize:15,
     _bgAlpha:0.04,
-    _spawnChance:0.012,
+    _spawnChance:0.015,
     _CHARS:'アイウエオカキクケコサシスセソタチツテトナニヌネノハマヤラワ01234567自由日本ABCDEF',
 
     create:function(canvasEl){
@@ -745,22 +745,33 @@ textarea.ev-input{min-height:80px;resize:vertical;}
       self._canvasEl=canvasEl;
       self._ctx=canvasEl.getContext('2d');
       self._resize();
-      /* Initialize all drops as inactive */
+      /* Two drops per column: one going DOWN, one going UP */
       self._drops=[];
       for(var i=0;i<self._totalCols;i++){
-        self._drops.push({y:-1,active:false});
+        self._drops.push({y:-1,active:false,dir:1});
+        self._drops.push({y:-1,active:false,dir:-1});
       }
-      self._activeRadius=3;
-      self._spawnChance=0.012;
-      /* Gradually expand outward from center */
+      self._activeRadius=2;
+      self._spawnChance=0.015;
+      /* Initial burst — activate a handful of center drops immediately */
+      var cRow=Math.floor(self._H/self._fontSize/2);
+      for(var b=0;b<self._drops.length;b++){
+        var ci=Math.floor(b/2);
+        var d=Math.abs(ci-self._centerCol);
+        if(d<=2&&Math.random()<0.35){
+          self._drops[b].active=true;
+          self._drops[b].y=cRow+(Math.random()-0.5)*3;
+        }
+      }
+      /* Expand outward like explosion */
       self._expandIv=setInterval(function(){
         if(self._activeRadius<self._maxRadius){
           self._activeRadius+=1;
-          self._spawnChance=Math.min(0.10,self._spawnChance+0.004);
+          self._spawnChance=Math.min(0.12,self._spawnChance+0.005);
         }else{
           clearInterval(self._expandIv);
         }
-      },280);
+      },180);
       window.addEventListener('resize',function(){self._resize();},{passive:true});
       self._raf=requestAnimationFrame(function f(){self._draw();self._raf=requestAnimationFrame(f);});
       return self;
@@ -788,52 +799,54 @@ textarea.ev-input{min-height:80px;resize:vertical;}
       ctx.fillStyle='rgba(0,0,0,'+this._bgAlpha+')';
       ctx.fillRect(0,0,W,H);
       var centerRow=Math.floor(H/fs/2);
-      for(var i=0;i<this._totalCols;i++){
-        var dist=Math.abs(i-center);
-        if(dist>radius)continue;
+      for(var i=0;i<this._drops.length;i++){
         var drop=this._drops[i];
-        if(!drop)continue;
+        var colIdx=Math.floor(i/2);
+        var dist=Math.abs(colIdx-center);
+        if(dist>radius)continue;
         /* Spawn new drops from center of screen */
         if(!drop.active){
           if(Math.random()<this._spawnChance){
             drop.active=true;
-            drop.y=centerRow+(Math.random()-0.5)*6;
+            drop.y=centerRow+(Math.random()-0.5)*4;
           }
           continue;
         }
-        var x=i*fs;
+        var x=colIdx*fs;
         var y=drop.y;
         /* Lead character (bright) */
         var c=chars[Math.floor(Math.random()*chars.length)];
         ctx.fillStyle='rgba(255,80,80,0.95)';
         ctx.fillText(c,x,y*fs);
-        /* Trail characters */
+        /* Trail characters (behind direction of travel) */
         for(var t=1;t<5;t++){
-          if(y-t>=0){
+          var trailY=y-t*drop.dir;
+          if(trailY>=0&&trailY*fs<H){
             var tc=chars[Math.floor(Math.random()*chars.length)];
             var a=0.55-t*0.1;
             ctx.fillStyle='rgba(180,0,0,'+Math.max(0,a)+')';
-            ctx.fillText(tc,x,(y-t)*fs);
+            ctx.fillText(tc,x,trailY*fs);
           }
         }
-        /* Advance or reset to top */
-        if(y*fs>H&&Math.random()>0.93){
-          drop.y=0;
-        }
-        drop.y+=spd;
+        /* Advance in direction */
+        drop.y+=spd*drop.dir;
+        /* Reset to center when off-screen */
+        if(drop.dir===1&&drop.y*fs>H&&Math.random()>0.92){drop.y=centerRow+(Math.random()-0.5)*4;}
+        if(drop.dir===-1&&drop.y*fs<0&&Math.random()>0.92){drop.y=centerRow+(Math.random()-0.5)*4;}
       }
     },
     setSpeed:function(s){
       this._speed=s;
       this._bgAlpha=Math.min(0.07,0.04+s*0.01);
-      this._spawnChance=Math.min(0.2,this._spawnChance+s*0.02);
+      this._spawnChance=Math.min(0.25,this._spawnChance+s*0.03);
       /* When speed increases, activate all columns */
       if(s>0.6){
         this._activeRadius=this._maxRadius;
+        var cRow=Math.floor(this._H/this._fontSize/2);
         for(var i=0;i<this._drops.length;i++){
           if(!this._drops[i].active){
             this._drops[i].active=true;
-            this._drops[i].y=Math.random()*Math.ceil(this._H/this._fontSize);
+            this._drops[i].y=cRow+(Math.random()-0.5)*10;
           }
         }
       }
@@ -935,19 +948,18 @@ textarea.ev-input{min-height:80px;resize:vertical;}
   /* ═══════════════════════════════════════
      ANIMATION SEQUENCE
      0.0s  Black screen, HIRECAR white logo + "MEMBER SERVICES" white
-     1.5s  "MEMBER SERVICES" zooms in + glows red + ambient red floods screen
+     1.5s  "MEMBER SERVICES" intensifies red (letters radiate ambient light)
      5.0s  HIRECAR logo particle disintegration
-     5.5s  Matrix rain starts from center (slow, few drops)
-     6.5s  Subtitle text fades out + ambient glow fades
+     5.5s  Red rain EXPLODES from center (up + down, few drops, expands)
+     6.5s  Subtitle text fades out
      10.8s +CreditWithKen logo fades in
      13.8s "ENTER ACCESS CODE" dissolves in (3s after CWK)
      14.3s PIN inputs dissolve in
   ═══════════════════════════════════════ */
 
-  /* 1.5s — "MEMBER SERVICES" glows red + zooms + ambient red radiates */
+  /* 1.5s — "MEMBER SERVICES" intensifies red (text-shadow radiates ambient light) */
   setTimeout(function(){
     subtitleText.classList.add('glow-red');
-    if(ambientGlow)ambientGlow.classList.add('active');
   },1500);
 
   /* 5.0s — HIRECAR logo particle disintegration */
@@ -961,11 +973,10 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     matrixCanvas.classList.add('rain-visible');
   },5500);
 
-  /* 6.5s — Fade out subtitle + ambient glow */
+  /* 6.5s — Fade out subtitle */
   setTimeout(function(){
     titleOverlay.style.transition='opacity 1.4s ease-out';
     titleOverlay.style.opacity='0';
-    if(ambientGlow){ambientGlow.style.transition='opacity 2s ease-out';ambientGlow.classList.remove('active');}
   },6500);
 
   /* 7.8s — Remove overlay */
