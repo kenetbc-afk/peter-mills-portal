@@ -27,7 +27,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;}
 .hirecar-logo-img.fade-out{opacity:0;}
 .hirecar-subtitle-text{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:#e31e2d;text-align:center;will-change:text-shadow,filter;text-shadow:0 0 10px rgba(227,30,45,.4),0 0 20px rgba(200,0,0,.2);transition:text-shadow 2.5s ease,filter 2.5s ease;margin-top:clamp(10px,2vw,20px);}
 .hirecar-subtitle-text.glow-red{text-shadow:0 0 10px #ff0000,0 0 25px #ff0000,0 0 55px #ff0000,0 0 110px rgba(255,0,0,1),0 0 220px rgba(255,0,0,.9),0 0 400px rgba(240,0,0,.7),0 0 650px rgba(200,0,0,.5),0 0 1000px rgba(170,0,0,.35),0 0 1400px rgba(140,0,0,.22),0 0 1800px rgba(120,0,0,.12),0 0 2200px rgba(100,0,0,.06);filter:brightness(3.5);}
-.cwk-logo-img{position:relative;z-index:10;width:clamp(220px,55vw,520px);max-width:88vw;height:auto;opacity:0;transition:opacity 5s cubic-bezier(0.7,0,0.9,0.4);filter:drop-shadow(0 0 16px rgba(227,30,45,.4));will-change:opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.cwk-logo-img{position:relative;z-index:10;width:clamp(280px,62vw,600px);max-width:90vw;height:auto;opacity:0;transition:opacity 5s cubic-bezier(0.7,0,0.9,0.4);filter:drop-shadow(0 0 16px rgba(227,30,45,.4));will-change:opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
 .cwk-logo-img.visible{opacity:1;}
 .ph2-container{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;width:90vw;max-width:520px;}
 .ph2-access-label{font-family:'Share Tech Mono',monospace;font-size:clamp(11px,2vw,15px);letter-spacing:clamp(3px,1vw,6px);color:#e31e2d;text-transform:uppercase;text-shadow:0 0 12px rgba(227,30,45,.5);margin:clamp(16px,3vw,28px) 0 clamp(12px,2vw,20px);opacity:0;transition:opacity 1.5s ease;}
@@ -1111,6 +1111,10 @@ textarea.ev-input{min-height:80px;resize:vertical;}
   /* ── Welcome Screen ── */
   function showWelcome(){
     if(rain)rain.stop();
+    /* Black backdrop to prevent white flash */
+    var backdrop=document.createElement('div');
+    backdrop.style.cssText='position:fixed;inset:0;z-index:9997;background:#000';
+    document.body.appendChild(backdrop);
     screenEl.style.transition='opacity 1s ease';
     screenEl.style.opacity='0';
     setTimeout(function(){
@@ -1140,6 +1144,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             overlay.style.transition='opacity 1.4s ease';overlay.style.opacity='0';
             setTimeout(function(){
               overlay.remove();
+              if(backdrop)backdrop.remove();
               mainPortal.style.display='block';
               setTimeout(function(){mainPortal.style.opacity='1';},50);
               setTimeout(function(){
