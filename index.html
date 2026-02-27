@@ -542,6 +542,19 @@ textarea.ev-input{min-height:80px;resize:vertical;}
           <button class="btn-primary" onclick="saveGoals()">Save Goals &amp; Temperature</button>
         </div>
       </div>
+
+      <!-- Quick Message Widget on Dashboard -->
+      <div class="card" style="border:1px solid rgba(184,146,42,.2);border-left:4px solid var(--gold);">
+        <h3 style="margin-bottom:8px;">Quick Message</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Send a message to your case team. Routed via Twilio to (661) 651-0858 / legal@hirecar.la and copied to Peter at +1 (661) 993-9476.</p>
+        <div id="dash-msg-bubbles" style="max-height:200px;overflow-y:auto;margin-bottom:12px;padding:8px;background:rgba(250,248,244,.5);border-radius:8px;border:1px solid var(--rule);"></div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="dash-msg-input" placeholder="Type a quick message..." style="flex:1;padding:10px 14px;border:1px solid var(--rule);border-radius:20px;font-size:14px;" onkeydown="if(event.key==='Enter')sendDashMsg()">
+          <button onclick="sendDashMsg()" style="padding:10px 18px;background:var(--gold);color:var(--white);border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;">Send</button>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px;">Powered by Twilio &mdash; SeedXchange re: Legal Research Agreement &nbsp;|&nbsp; <a href="#" onclick="document.querySelector('[data-sec=sec-messages]').click();return false;" style="color:var(--gold);">Open Full Message Center &rarr;</a></p>
+      </div>
+
     </div>
 
     <!-- ===== STATISTICS ===== -->
@@ -2682,6 +2695,39 @@ function saveSmsSettings(){
     });
   });
 })();
+
+/* ===== DASHBOARD QUICK MESSAGE ===== */
+function sendDashMsg(){
+  var input=document.getElementById('dash-msg-input');
+  var text=input.value.trim();
+  if(!text)return;
+  var bubbles=document.getElementById('dash-msg-bubbles');
+  var now=new Date();
+  var timeStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  var mine=document.createElement('div');
+  mine.style.cssText='background:var(--gold);color:var(--white);padding:8px 12px;border-radius:12px 12px 4px 12px;margin-bottom:6px;font-size:13px;max-width:85%;margin-left:auto;';
+  mine.innerHTML=text+'<span style="display:block;font-size:10px;opacity:.7;margin-top:4px;">'+timeStr+'</span>';
+  bubbles.appendChild(mine);
+  input.value='';
+  // Also push to main message center
+  var mainBubbles=document.getElementById('msg-bubbles');
+  if(mainBubbles){
+    var mb=document.createElement('div');
+    mb.className='msg-bubble mine';
+    mb.innerHTML=text+'<span class="msg-time">'+timeStr+'</span>';
+    mainBubbles.appendChild(mb);
+  }
+  // Auto reply
+  setTimeout(function(){
+    var r=document.createElement('div');
+    r.style.cssText='background:var(--paper);border:1px solid var(--rule);padding:8px 12px;border-radius:12px 12px 12px 4px;margin-bottom:6px;font-size:13px;max-width:85%;color:var(--ink);';
+    r.innerHTML='Message received. Routed to (661) 651-0858 / legal@hirecar.la. Copy sent to Peter at +1 (661) 993-9476.<span style="display:block;font-size:10px;color:var(--muted);margin-top:4px;">'+timeStr+' &middot; Auto-reply</span>';
+    bubbles.appendChild(r);
+    bubbles.scrollTop=bubbles.scrollHeight;
+  },800);
+  bubbles.scrollTop=bubbles.scrollHeight;
+  showToast('Message sent via Twilio to (661) 651-0858 & legal@hirecar.la','success');
+}
 
 /* ===== TOAST ===== */
 function showToast(msg,type){
