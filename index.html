@@ -251,6 +251,95 @@ textarea.ev-input{min-height:80px;resize:vertical;}
 .tab-badge-red{background:var(--error);}
 .tab-badge-gold{background:var(--gold);}
 
+/* Confidential Classification Header */
+.conf-header{background:var(--ink);color:var(--gold);padding:12px 20px;border-radius:10px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.conf-header .conf-label{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.85;}
+.conf-header .conf-case{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);}
+
+/* Goals & Temperature Check */
+.goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+@media(max-width:768px){.goals-grid{grid-template-columns:1fr;}}
+.goal-card{background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:20px;}
+.goal-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.goal-card h4 .g-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.temp-slider{width:100%;margin:12px 0 4px;accent-color:var(--gold);height:6px;}
+.temp-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+.temp-value{text-align:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin:8px 0;}
+.goal-textarea{width:100%;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;min-height:70px;resize:vertical;transition:border-color .2s;}
+.goal-textarea:focus{outline:none;border-color:var(--gold);}
+.goal-select{width:100%;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--white);cursor:pointer;transition:border-color .2s;}
+.goal-select:focus{outline:none;border-color:var(--gold);}
+.goal-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.goal-chip{padding:6px 14px;border:1px solid var(--rule);border-radius:20px;font-size:13px;cursor:pointer;transition:all .2s;background:var(--white);}
+.goal-chip:hover{border-color:var(--gold);}
+.goal-chip.selected{background:var(--gold);color:var(--white);border-color:var(--gold);}
+.goal-save-row{text-align:right;margin-top:16px;}
+
+/* Statistics Section */
+.stat-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px;}
+.stat-block{background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:20px;}
+.stat-block h4{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.stat-block .stat-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--ink);}
+.stat-block .stat-value.gold{color:var(--gold);}
+.stat-block .stat-value.red{color:var(--error);}
+.stat-block .stat-value.green{color:var(--success);}
+.stat-block .stat-value.blue{color:var(--blue);}
+.coa-table{width:100%;border-collapse:collapse;margin-top:16px;}
+.coa-table th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:10px 12px;border-bottom:2px solid var(--rule);font-family:'DM Sans',sans-serif;font-weight:600;}
+.coa-table td{padding:12px;border-bottom:1px solid rgba(200,192,180,.3);font-size:14px;vertical-align:top;}
+.coa-table tr:last-child td{border-bottom:none;}
+.risk-bar{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.risk-strong{background:rgba(26,107,60,.1);color:var(--success);}
+.risk-moderate{background:rgba(184,146,42,.1);color:var(--gold);}
+.risk-high{background:rgba(192,57,43,.1);color:var(--error);}
+.defendant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px;}
+.def-card{background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:20px;}
+.def-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px;}
+.def-card .def-role{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.def-card .def-detail{font-size:13px;margin:4px 0;display:flex;gap:8px;}
+.def-card .def-detail .dlabel{font-weight:600;color:var(--muted);min-width:80px;}
+
+/* Document Upload Modal */
+.doc-upload-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:20px;}
+.doc-upload-overlay.open{display:flex;}
+.doc-upload-modal{background:var(--white);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;padding:28px;}
+.doc-upload-modal h3{font-size:20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
+.doc-upload-modal .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);padding:4px;}
+.doc-upload-field{margin-bottom:16px;}
+.doc-upload-field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink);}
+.doc-upload-field input,.doc-upload-field select,.doc-upload-field textarea{width:100%;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:border-color .2s;}
+.doc-upload-field input:focus,.doc-upload-field select:focus,.doc-upload-field textarea:focus{outline:none;border-color:var(--gold);}
+.doc-upload-field textarea{min-height:60px;resize:vertical;}
+.doc-upload-drop{border:2px dashed var(--rule);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;}
+.doc-upload-drop:hover{border-color:var(--gold);background:rgba(184,146,42,.03);}
+.doc-upload-drop.has-file{border-color:var(--success);border-style:solid;background:rgba(26,107,60,.03);}
+.doc-upload-drop .drop-icon{font-size:32px;color:var(--muted);margin-bottom:6px;}
+.doc-upload-drop p{font-size:13px;color:var(--muted);}
+.doc-upload-preview{display:flex;align-items:center;gap:12px;padding:12px;background:var(--cream);border-radius:8px;margin-top:12px;}
+.doc-upload-preview .preview-thumb{width:48px;height:56px;border-radius:6px;background:var(--white);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;flex-shrink:0;}
+.doc-upload-preview .preview-thumb img{width:100%;height:100%;object-fit:cover;}
+.doc-upload-preview .preview-info{flex:1;min-width:0;}
+.doc-upload-preview .preview-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.doc-upload-preview .preview-size{font-size:11px;color:var(--muted);}
+
+/* Document Thumbnails Grid */
+.doc-thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:20px;}
+.doc-thumb{background:var(--white);border:1px solid var(--rule);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s;}
+.doc-thumb:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(184,146,42,.15);}
+.doc-thumb .thumb-preview{width:100%;height:120px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden;position:relative;}
+.doc-thumb .thumb-preview img{width:100%;height:100%;object-fit:cover;}
+.doc-thumb .thumb-preview canvas{width:100%;height:100%;object-fit:cover;}
+.doc-thumb .thumb-badge{position:absolute;top:6px;right:6px;}
+.doc-thumb .thumb-info{padding:10px 12px;}
+.doc-thumb .thumb-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+.doc-thumb .thumb-meta{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* Message file upload */
+.msg-attach-btn{width:40px;height:40px;border-radius:50%;background:var(--cream);border:1px solid var(--rule);color:var(--muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.msg-attach-btn:hover{border-color:var(--gold);color:var(--gold);}
+.msg-file-preview{padding:8px 14px;background:var(--cream);border-radius:8px;margin:4px 0;font-size:12px;display:flex;align-items:center;gap:8px;}
+.msg-file-preview .mfp-remove{cursor:pointer;color:var(--error);font-weight:700;}
+
 /* Message Timestamps */
 .msg-bubble .msg-time{display:block;font-size:10px;opacity:.7;margin-top:4px;}
 .msg-bubble.mine .msg-time{text-align:right;color:rgba(255,255,255,.7);}
@@ -313,6 +402,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     <button id="hamburger" onclick="document.querySelector('.menu-tabs').classList.toggle('open')">&#9776;</button>
     <div class="menu-tabs">
       <button class="menu-tab active" data-sec="sec-dashboard">Dashboard</button>
+      <button class="menu-tab" data-sec="sec-statistics">Statistics</button>
       <button class="menu-tab" data-sec="sec-documents">Documents<span class="tab-badge tab-badge-gold">6</span></button>
       <button class="menu-tab" data-sec="sec-evidence">Evidence</button>
       <button class="menu-tab" data-sec="sec-communications">Communications</button>
@@ -328,6 +418,10 @@ textarea.ev-input{min-height:80px;resize:vertical;}
 
     <!-- ===== DASHBOARD ===== -->
     <div id="sec-dashboard" class="section visible">
+      <div class="conf-header">
+        <span class="conf-label">Priority Classification: Confidential &mdash; Member Use Only</span>
+        <span class="conf-case">Mills v. Cho et al. &bull; 25CHCV02355</span>
+      </div>
       <div class="sec-header">
         <div class="accent-bar"></div>
         <h2>Case Dashboard</h2>
@@ -339,12 +433,14 @@ textarea.ev-input{min-height:80px;resize:vertical;}
           <span class="badge badge-gold">ACTIVE LITIGATION</span>
         </div>
         <div class="case-overview">
-          <div class="case-row"><span class="case-label">Court</span><span class="case-val">LA County Superior Court</span></div>
+          <div class="case-row"><span class="case-label">Court</span><span class="case-val">LA County Superior Court &mdash; North Valley District (Chatsworth)</span></div>
           <div class="case-row"><span class="case-label">Case No.</span><span class="case-val">25CHCV02355</span></div>
           <div class="case-row"><span class="case-label">Security Deposit</span><span class="case-val" style="font-weight:700;color:var(--gold);">$9,000.00</span></div>
-          <div class="case-row"><span class="case-label">Defendants</span><span class="case-val">New Star Realty, Inc.; Cho; Alan Oh (Broker)</span></div>
+          <div class="case-row"><span class="case-label">Defendants</span><span class="case-val">Myung Ja Cho; New Star Realty, Inc.; Alan Oh (Broker, DRE #01706967)</span></div>
           <div class="case-row"><span class="case-label">Property</span><span class="case-val">25625 Birchleaf Ct., Valencia, CA 91381</span></div>
+          <div class="case-row"><span class="case-label">Filing Date</span><span class="case-val">July 15, 2025</span></div>
           <div class="case-row"><span class="case-label">Service Provider</span><span class="case-val">SeedXchange, LLC / CREDITWITHKEN</span></div>
+          <div class="case-row"><span class="case-label">Next Hearing</span><span class="case-val" style="font-weight:700;color:var(--error);">July 6, 2026 &mdash; Demurrer Hearing</span></div>
         </div>
       </div>
 
@@ -353,27 +449,229 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <span style="margin-left:auto;font-size:12px;color:var(--success);">&#9679; Active Session</span>
       </div>
 
-      <div class="card">
-        <h3 style="margin-bottom:8px;">Case Timeline</h3>
-        <div class="timeline">
-          <div class="tl-item done"><span class="tl-date">March 31, 2025</span> &mdash; <span class="tl-desc">Engagement Signed</span></div>
-          <div class="tl-item done"><span class="tl-date">April 2025</span> &mdash; <span class="tl-desc">Legal Research &amp; Doc Prep</span></div>
-          <div class="tl-item done"><span class="tl-date">May 2025</span> &mdash; <span class="tl-desc">Complaint Filed</span></div>
-          <div class="tl-item done"><span class="tl-date">June 2025</span> &mdash; <span class="tl-desc">Process Service</span></div>
-          <div class="tl-item done"><span class="tl-date">July 15, 2025</span> &mdash; <span class="tl-desc">Defendant Response Deadline</span></div>
-          <div class="tl-item done"><span class="tl-date">August 2025</span> &mdash; <span class="tl-desc">Demurrer Filed by Defense</span></div>
-          <div class="tl-item action"><span class="tl-date">September 15, 2025</span> &mdash; <span class="tl-desc">Demurrer Response Due</span> <span class="badge badge-gold" style="margin-left:6px;">ACTION NEEDED</span></div>
-          <div class="tl-item pending"><span class="tl-date">October 2025</span> &mdash; <span class="tl-desc">Case Management Conference</span></div>
-          <div class="tl-item pending"><span class="tl-date">TBD</span> &mdash; <span class="tl-desc">Discovery Cutoff</span></div>
-          <div class="tl-item pending"><span class="tl-date">TBD</span> &mdash; <span class="tl-desc">Trial Date</span></div>
-        </div>
-      </div>
-
       <div class="stats-row">
         <div class="stat-card stat-green"><div class="stat-num" id="stat-confirmed">0</div><div class="stat-label">Evidence Confirmed</div></div>
         <div class="stat-card stat-red"><div class="stat-num" id="stat-exposed">0</div><div class="stat-label">Evidence Exposed</div></div>
         <div class="stat-card stat-blue"><div class="stat-num">12</div><div class="stat-label">Documents on File</div></div>
         <div class="stat-card stat-gold"><div class="stat-num">6</div><div class="stat-label">Pending Documents</div></div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px;">Case Timeline</h3>
+        <div class="timeline">
+          <div class="tl-item done"><span class="tl-date">March 31, 2025</span> &mdash; <span class="tl-desc">Engagement Signed (SeedXchange / CreditWithKen)</span></div>
+          <div class="tl-item done"><span class="tl-date">April 18, 2025</span> &mdash; <span class="tl-desc">DRE Complaint Filed Against Alan Oh</span></div>
+          <div class="tl-item done"><span class="tl-date">April &ndash; July 2025</span> &mdash; <span class="tl-desc">Legal Research, Doc Prep &amp; Complaint Drafting</span></div>
+          <div class="tl-item done"><span class="tl-date">July 15, 2025</span> &mdash; <span class="tl-desc">Complaint Filed &mdash; Case No. 25CHCV02355</span></div>
+          <div class="tl-item done"><span class="tl-date">August &ndash; September 2025</span> &mdash; <span class="tl-desc">Service Attempts &amp; Process Service Initiated</span></div>
+          <div class="tl-item done"><span class="tl-date">November 2025</span> &mdash; <span class="tl-desc">Defense Counsel (Roger Fainbuch) Files Demurrer for Allen/New Star</span></div>
+          <div class="tl-item done"><span class="tl-date">Early February 2026</span> &mdash; <span class="tl-desc">Allen Oh Successfully Served (Personal Service)</span></div>
+          <div class="tl-item action"><span class="tl-date">July 6, 2026</span> &mdash; <span class="tl-desc">Demurrer Hearing &mdash; Dept. F47</span> <span class="badge badge-gold" style="margin-left:6px;">UPCOMING</span></div>
+          <div class="tl-item pending"><span class="tl-date">TBD</span> &mdash; <span class="tl-desc">Case Management Conference</span></div>
+          <div class="tl-item pending"><span class="tl-date">TBD</span> &mdash; <span class="tl-desc">Discovery Phase</span></div>
+          <div class="tl-item pending"><span class="tl-date">TBD</span> &mdash; <span class="tl-desc">Trial Date</span></div>
+        </div>
+      </div>
+
+      <!-- Goals & Temperature Check -->
+      <div class="card" style="border:1px solid var(--gold);border-left:4px solid var(--gold);">
+        <h3 style="margin-bottom:4px;">Goals &amp; Temperature Check</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Peter, help us understand your priorities so we can serve you better.</p>
+        <div class="goals-grid">
+          <div class="goal-card">
+            <h4><span class="g-icon" style="background:rgba(184,146,42,.1);color:var(--gold);">&#127919;</span> Desired Outcome</h4>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">What is your primary goal for this case?</p>
+            <div class="goal-chips" id="goal-outcome-chips">
+              <span class="goal-chip" data-val="full-refund">Full Deposit Refund ($9,000)</span>
+              <span class="goal-chip" data-val="refund-penalties">Refund + Statutory Penalties</span>
+              <span class="goal-chip" data-val="maximum-recovery">Maximum Recovery (2x Bad Faith)</span>
+              <span class="goal-chip" data-val="settlement">Negotiate Settlement</span>
+            </div>
+          </div>
+          <div class="goal-card">
+            <h4><span class="g-icon" style="background:rgba(26,107,60,.1);color:var(--success);">&#128176;</span> Settlement Range</h4>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">What is the minimum amount you would accept in a settlement?</p>
+            <select class="goal-select" id="goal-settlement">
+              <option value="">Select a range...</option>
+              <option value="9000">$9,000 (deposit only)</option>
+              <option value="12000">$9,000 &ndash; $12,000</option>
+              <option value="15000">$12,000 &ndash; $15,000</option>
+              <option value="18000">$15,000 &ndash; $18,000 (2x penalty)</option>
+              <option value="no-settle">No settlement &mdash; go to trial</option>
+            </select>
+          </div>
+          <div class="goal-card">
+            <h4><span class="g-icon" style="background:rgba(192,57,43,.1);color:var(--error);">&#128293;</span> Case Priority</h4>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">What matters most to you?</p>
+            <div class="goal-chips" id="goal-priority-chips">
+              <span class="goal-chip" data-val="money">Get My Money Back</span>
+              <span class="goal-chip" data-val="accountability">Hold Landlord Accountable</span>
+              <span class="goal-chip" data-val="both">Both &mdash; Money + Accountability</span>
+              <span class="goal-chip" data-val="fast-resolution">Fast Resolution</span>
+            </div>
+          </div>
+          <div class="goal-card">
+            <h4><span class="g-icon" style="background:rgba(42,107,184,.1);color:var(--blue);">&#127777;</span> Temperature Check</h4>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">How confident do you feel about the case right now?</p>
+            <div class="temp-value" id="temp-display" style="color:var(--gold);">5</div>
+            <input type="range" class="temp-slider" id="temp-slider" min="1" max="10" value="5" oninput="document.getElementById('temp-display').textContent=this.value;var c=this.value<=3?'var(--error)':this.value<=6?'var(--gold)':'var(--success)';document.getElementById('temp-display').style.color=c;">
+            <div class="temp-labels"><span>1 &mdash; Not Confident</span><span>10 &mdash; Very Confident</span></div>
+          </div>
+        </div>
+        <div class="goal-card" style="margin-top:16px;">
+          <h4><span class="g-icon" style="background:rgba(184,146,42,.1);color:var(--gold);">&#128221;</span> Additional Notes</h4>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:8px;">Any questions, concerns, or updates you want to share with the team?</p>
+          <textarea class="goal-textarea" id="goal-notes" placeholder="Type your notes here..."></textarea>
+        </div>
+        <div class="goal-save-row">
+          <button class="btn-primary" onclick="saveGoals()">Save Goals &amp; Temperature</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STATISTICS ===== -->
+    <div id="sec-statistics" class="section">
+      <div class="conf-header">
+        <span class="conf-label">Confidential &mdash; Case Intelligence Summary</span>
+        <span class="conf-case">Prepared by SeedXchange, LLC / CreditWithKen</span>
+      </div>
+      <div class="sec-header">
+        <div class="accent-bar"></div>
+        <h2>Case Statistics &amp; Overview</h2>
+      </div>
+
+      <!-- Key Figures -->
+      <div class="stat-overview">
+        <div class="stat-block"><h4>Security Deposit</h4><div class="stat-value gold">$9,000</div><p style="font-size:12px;color:var(--muted);margin-top:4px;">Amount withheld by landlord</p></div>
+        <div class="stat-block"><h4>Potential Recovery (2x)</h4><div class="stat-value green">$18,000</div><p style="font-size:12px;color:var(--muted);margin-top:4px;">CC &sect;1950.5(l) bad faith penalty</p></div>
+        <div class="stat-block"><h4>Causes of Action</h4><div class="stat-value blue">6</div><p style="font-size:12px;color:var(--muted);margin-top:4px;">Filed in verified complaint</p></div>
+        <div class="stat-block"><h4>Defendants</h4><div class="stat-value red">3</div><p style="font-size:12px;color:var(--muted);margin-top:4px;">Cho, New Star Realty, Alan Oh</p></div>
+      </div>
+
+      <!-- Peter's Information -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Plaintiff Information</h3>
+        <div class="case-overview">
+          <div class="case-row"><span class="case-label">Full Name</span><span class="case-val">Peter T. Mills</span></div>
+          <div class="case-row"><span class="case-label">Role</span><span class="case-val">Plaintiff / Former Tenant</span></div>
+          <div class="case-row"><span class="case-label">Rental Property</span><span class="case-val">25625 Birchleaf Ct., Valencia, CA 91381</span></div>
+          <div class="case-row"><span class="case-label">Deposit Amount</span><span class="case-val" style="font-weight:700;">$9,000.00</span></div>
+          <div class="case-row"><span class="case-label">Service Provider</span><span class="case-val">SeedXchange, LLC / CreditWithKen</span></div>
+          <div class="case-row"><span class="case-label">Engagement Date</span><span class="case-val">March 31, 2025</span></div>
+          <div class="case-row"><span class="case-label">Service Fee</span><span class="case-val">$18,050 total ($3,500 down payment)</span></div>
+          <div class="case-row"><span class="case-label">Court</span><span class="case-val">LA Superior Court &mdash; North Valley (Chatsworth), Dept. F47</span></div>
+        </div>
+      </div>
+
+      <!-- Defendants -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Defendants &amp; Service Status</h3>
+        <div class="defendant-grid">
+          <div class="def-card">
+            <h4>Myung Ja Cho</h4>
+            <div class="def-role">Defendant &mdash; Landlord / Property Owner</div>
+            <div class="def-detail"><span class="dlabel">Service</span><span class="badge badge-red" style="font-size:10px;">NOT YET SERVED</span></div>
+            <div class="def-detail"><span class="dlabel">Role</span><span>Individual named owner; primary defendant in deposit withholding</span></div>
+            <div class="def-detail"><span class="dlabel">Status</span><span>Service attempts ongoing; critical for case progression</span></div>
+          </div>
+          <div class="def-card">
+            <h4>New Star Realty, Inc.</h4>
+            <div class="def-role">Defendant &mdash; Property Management Company</div>
+            <div class="def-detail"><span class="dlabel">Service</span><span class="badge badge-green" style="font-size:10px;">SERVED</span></div>
+            <div class="def-detail"><span class="dlabel">Counsel</span><span>Roger Fainbuch (Defense Attorney)</span></div>
+            <div class="def-detail"><span class="dlabel">Status</span><span>Filed Demurrer (Nov 2025); hearing set July 6, 2026</span></div>
+          </div>
+          <div class="def-card">
+            <h4>Alan Oh (Allen)</h4>
+            <div class="def-role">Defendant &mdash; Real Estate Broker (DRE #01706967)</div>
+            <div class="def-detail"><span class="dlabel">Service</span><span class="badge badge-green" style="font-size:10px;">SERVED (Feb 2026)</span></div>
+            <div class="def-detail"><span class="dlabel">Counsel</span><span>Roger Fainbuch (Defense Attorney)</span></div>
+            <div class="def-detail"><span class="dlabel">DRE</span><span>Complaint filed April 18, 2025</span></div>
+            <div class="def-detail"><span class="dlabel">Status</span><span>Personally served; included in demurrer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Causes of Action -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Causes of Action &amp; Risk Assessment</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Risk level reflects strength of each cause based on current evidence and legal analysis.</p>
+        <div style="overflow-x:auto;">
+          <table class="coa-table">
+            <thead>
+              <tr><th>#</th><th>Cause of Action</th><th>Statute</th><th>Strength</th><th>Key Issue</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Wrongful Withholding of Security Deposit</strong></td>
+                <td>CC &sect;1950.5</td>
+                <td><span class="risk-bar risk-strong">STRONG</span></td>
+                <td>Core claim; 21-day rule violation, bad faith withholding. Potential 2x penalty ($18K).</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Breach of Contract</strong></td>
+                <td>Common Law</td>
+                <td><span class="risk-bar risk-strong">STRONG</span></td>
+                <td>Lease terms violated re: deposit return. Need to verify if specific lease provisions cited.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Breach of Implied Warranty of Habitability</strong></td>
+                <td>CC &sect;1941&ndash;1942.5</td>
+                <td><span class="risk-bar risk-moderate">MODERATE</span></td>
+                <td>Requires documentation of habitability defects during tenancy. Need tenant complaints on record.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Fraud / Intentional Misrepresentation</strong></td>
+                <td>CC &sect;1709&ndash;1710</td>
+                <td><span class="risk-bar risk-moderate">MODERATE</span></td>
+                <td>Must prove specific intent and reliance. MLS listing vs. claimed damage is key evidence.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Violation of Unfair Business Practices (UCL)</strong></td>
+                <td>B&amp;P &sect;17200</td>
+                <td><span class="risk-bar risk-strong">STRONG</span></td>
+                <td>Broad statute; pattern of deposit abuse + unlicensed work = strong UCL claim.</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Negligence</strong></td>
+                <td>Common Law</td>
+                <td><span class="risk-bar risk-moderate">MODERATE</span></td>
+                <td>Duty of care in deposit handling and property maintenance. Broker supervision issues.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Projected Timelines -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Projected Timelines</h3>
+        <div class="case-overview">
+          <div class="case-row"><span class="case-label">Demurrer Hearing</span><span class="case-val" style="font-weight:700;color:var(--error);">July 6, 2026</span></div>
+          <div class="case-row"><span class="case-label">Cho Service</span><span class="case-val">Pending &mdash; critical for default judgment option</span></div>
+          <div class="case-row"><span class="case-label">Discovery Phase</span><span class="case-val">Expected post-demurrer ruling (Q3 2026)</span></div>
+          <div class="case-row"><span class="case-label">CMC / Status</span><span class="case-val">TBD &mdash; likely after demurrer resolved</span></div>
+          <div class="case-row"><span class="case-label">Settlement Window</span><span class="case-val">Open &mdash; pre-trial settlement possible at any time</span></div>
+          <div class="case-row"><span class="case-label">Trial Estimate</span><span class="case-val">Q4 2026 &ndash; Q1 2027 (if no settlement)</span></div>
+        </div>
+      </div>
+
+      <!-- Key Issues Summary -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Key Issues &amp; Action Items</h3>
+        <div style="display:grid;gap:10px;">
+          <div class="ev-note warn">Cho has NOT been served. Until personal service is completed, case cannot fully proceed against the primary landlord defendant.</div>
+          <div class="ev-note info">Defense demurrer argues complaint lacks specificity. Opposition must address each cause of action with factual detail and statutory citations.</div>
+          <div class="ev-note ok">Allen Oh successfully served in early February 2026. All defense counsel (Roger Fainbuch) representations now cover served defendants.</div>
+          <div class="ev-note warn">Move-in condition photos are a critical evidence gap. Without baseline documentation, defense may argue pre-existing damage.</div>
+          <div class="ev-note info">DRE complaint filed April 18, 2025 creates regulatory pressure on broker. This is a strategic advantage in settlement negotiations.</div>
+        </div>
       </div>
     </div>
 
@@ -391,7 +689,10 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <button class="doc-tab" data-dtab="counsel">Counsel Correspondence</button>
       </div>
 
-      <div style="margin-bottom:16px;"><input type="text" class="ev-input" id="doc-search" placeholder="Search documents..." oninput="filterDocs(this.value)" style="max-width:400px;"></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <input type="text" class="ev-input" id="doc-search" placeholder="Search documents..." oninput="filterDocs(this.value)" style="max-width:400px;flex:1;">
+        <button class="btn-primary" onclick="openDocUpload()" style="padding:10px 24px;font-size:14px;">+ Upload Document</button>
+      </div>
 
       <div id="docs-onfile" class="card-grid">
         <div class="doc-card" data-dtype="onfile"><div class="doc-icon">&#128196;</div><div class="doc-info"><h4>Verified Complaint</h4><p>Peter T. Mills v. Cho et al. &mdash; Filed complaint with all causes of action</p><div class="doc-meta"><span class="badge badge-green">ON FILE</span><span class="cat-tag">Filing</span><span style="font-size:12px;color:var(--muted);">May 2025</span></div></div></div>
@@ -417,11 +718,72 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <div class="doc-card pending-doc" data-dtype="pending"><div class="doc-icon" style="background:rgba(184,146,42,.1);">&#128176;</div><div class="doc-info"><h4>Financial Hardship Documentation</h4><p>Records showing financial impact of withheld deposit</p><div class="doc-meta"><span class="badge badge-gold">NEEDED</span><span class="priority-medium">PRIORITY MEDIUM</span></div></div></div>
       </div>
 
+      <!-- Uploaded Documents (Thumbnails) -->
+      <div class="card" id="uploaded-docs-section" style="display:none;margin-top:24px;">
+        <h3 style="margin-bottom:4px;">Uploaded Documents</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Documents uploaded by Peter Mills</p>
+        <div class="doc-thumb-grid" id="doc-thumb-grid"></div>
+      </div>
+
       <div class="efile-panel">
         <h3>&#128279; Court E-File System</h3>
         <p style="color:var(--muted);font-size:14px;">Status: <span class="badge badge-green" style="font-size:10px;">API Integration Available</span></p>
         <button class="efile-btn" onclick="showToast('E-Filing integration coming soon.','info')">Connect to LA Superior Court E-Filing</button>
         <p style="font-size:12px;color:var(--muted);margin-top:10px;">Automatically sync filed documents from LASC portal</p>
+      </div>
+    </div>
+
+    <!-- Document Upload Modal -->
+    <div class="doc-upload-overlay" id="doc-upload-overlay">
+      <div class="doc-upload-modal">
+        <h3>Upload Document <button class="modal-close" onclick="closeDocUpload()">&times;</button></h3>
+        <div class="doc-upload-drop" id="doc-upload-drop" onclick="document.getElementById('doc-file-input').click()">
+          <div class="drop-icon">&#128228;</div>
+          <p>Drag &amp; drop your file here, or click to browse</p>
+          <input type="file" id="doc-file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.tiff,.txt" style="display:none;">
+        </div>
+        <div id="doc-upload-preview-area"></div>
+        <div class="doc-upload-field">
+          <label>Document Name <span style="color:var(--error);">*</span></label>
+          <input type="text" id="doc-upload-name" placeholder="e.g., Move-Out Inspection Photos">
+        </div>
+        <div class="doc-upload-field">
+          <label>Complaint Section It Applies To <span style="color:var(--error);">*</span></label>
+          <select id="doc-upload-section">
+            <option value="">Select section...</option>
+            <option value="COA1">COA 1 &mdash; Wrongful Withholding of Security Deposit</option>
+            <option value="COA2">COA 2 &mdash; Breach of Contract</option>
+            <option value="COA3">COA 3 &mdash; Breach of Implied Warranty of Habitability</option>
+            <option value="COA4">COA 4 &mdash; Fraud / Intentional Misrepresentation</option>
+            <option value="COA5">COA 5 &mdash; Violation of UCL (B&amp;P &sect;17200)</option>
+            <option value="COA6">COA 6 &mdash; Negligence</option>
+            <option value="general">General / Multiple Causes</option>
+            <option value="service">Service / Process</option>
+            <option value="correspondence">Counsel Correspondence</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="doc-upload-field">
+            <label>Document Date <span style="color:var(--error);">*</span></label>
+            <input type="date" id="doc-upload-date">
+          </div>
+          <div class="doc-upload-field">
+            <label>From (Author / Source) <span style="color:var(--error);">*</span></label>
+            <input type="text" id="doc-upload-from" placeholder="e.g., Peter Mills">
+          </div>
+        </div>
+        <div class="doc-upload-field">
+          <label>To (Recipient)</label>
+          <input type="text" id="doc-upload-to" placeholder="e.g., SeedXchange Legal Team">
+        </div>
+        <div class="doc-upload-field">
+          <label>Short Description <span style="color:var(--error);">*</span></label>
+          <textarea id="doc-upload-desc" placeholder="Brief description of what this document contains and why it is relevant to the case..." style="min-height:60px;resize:vertical;width:100%;padding:10px 14px;border:1px solid var(--rule);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;"></textarea>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px;">
+          <button style="padding:10px 24px;background:var(--cream);border:1px solid var(--rule);border-radius:8px;font-size:14px;cursor:pointer;" onclick="closeDocUpload()">Cancel</button>
+          <button class="btn-primary" style="padding:10px 28px;" onclick="submitDocUpload()">Upload Document</button>
+        </div>
       </div>
     </div>
 
@@ -648,25 +1010,27 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <div class="accent-bar"></div>
         <h2>Message Center</h2>
       </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Send messages to Kenroy Eckman (SeedXchange / CreditWithKen) via Twilio. Messages are delivered to email and text. You can also attach documents.</p>
       <div class="msg-container">
         <div class="msg-contacts">
-          <div class="msg-contact active" onclick="switchThread('SeedXchange Legal')"><h4>SeedXchange Legal</h4><p>Yes &mdash; we need your move-in photos...</p></div>
+          <div class="msg-contact active" onclick="switchThread('Kenroy Eckman')"><h4>Kenroy Eckman</h4><p style="font-size:11px;color:var(--gold);">SeedXchange / CreditWithKen</p><p>Direct line &mdash; email + text</p></div>
+          <div class="msg-contact" onclick="switchThread('SeedXchange Legal')"><h4>SeedXchange Legal</h4><p>Yes &mdash; we need your move-in photos...</p></div>
           <div class="msg-contact" onclick="switchThread('Court Notifications')"><h4>Court Notifications</h4><p>CMC scheduling notice...</p></div>
           <div class="msg-contact" onclick="switchThread('HIRECAR Support')"><h4>HIRECAR Support</h4><p>How can we help?</p></div>
         </div>
         <div class="msg-thread">
-          <div class="msg-thread-header">SeedXchange Legal</div>
+          <div class="msg-thread-header" id="msg-thread-header">Kenroy Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span></div>
           <div class="msg-bubbles" id="msg-bubbles">
-            <div class="msg-bubble mine">Hi, I have a question about the demurrer deadline. When is it due?<span class="msg-time">Aug 12, 2025 &middot; 2:34 PM</span></div>
-            <div class="msg-bubble theirs">The demurrer response is due September 15, 2025. We're preparing the opposition now.<span class="msg-time">Aug 12, 2025 &middot; 2:41 PM</span></div>
-            <div class="msg-bubble mine">Do I need to provide anything else?<span class="msg-time">Aug 12, 2025 &middot; 2:43 PM</span></div>
-            <div class="msg-bubble theirs">Yes &mdash; we need your move-in photos and forwarding address documentation. Please upload through the Evidence section.<span class="msg-time">Aug 12, 2025 &middot; 2:48 PM</span></div>
+            <div class="msg-bubble theirs">Hi Peter, welcome to your secure message channel. Messages here are sent directly to me via email and text through Twilio. You can also attach files using the paperclip icon. How can I help?<span class="msg-time">Feb 27, 2026 &middot; System</span></div>
           </div>
+          <div id="msg-file-area"></div>
           <div class="msg-input-bar">
-            <input type="text" id="msg-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="msg-attach-btn" onclick="document.getElementById('msg-file-input').click()" title="Attach file">&#128206;</button>
+            <input type="file" id="msg-file-input" style="display:none;" onchange="handleMsgFileAttach(this)">
+            <input type="text" id="msg-input" placeholder="Type a message to Kenroy..." onkeydown="if(event.key==='Enter')sendMsg()">
             <button class="msg-send-btn" onclick="sendMsg()">&#9654;</button>
           </div>
-          <div class="msg-twilio-note">Messages powered by Twilio &mdash; replies sent to your iMessage and email</div>
+          <div class="msg-twilio-note">Powered by Twilio &mdash; messages delivered to Kenroy via email (info@seedxg.com) and text (661-469-1141)</div>
         </div>
       </div>
     </div>
@@ -1312,23 +1676,52 @@ function submitEvidence(){
 }
 
 /* ===== MESSAGES ===== */
+/* Message file attachment state */
+var _msgAttachedFile=null;
+function handleMsgFileAttach(input){
+  if(!input.files||!input.files.length)return;
+  _msgAttachedFile=input.files[0];
+  var area=document.getElementById('msg-file-area');
+  area.innerHTML='<div class="msg-file-preview"><span>&#128206;</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+_msgAttachedFile.name+' ('+formatFileSize(_msgAttachedFile.size)+')</span><span class="mfp-remove" onclick="removeMsgFile()">&#10005;</span></div>';
+}
+function removeMsgFile(){
+  _msgAttachedFile=null;
+  document.getElementById('msg-file-area').innerHTML='';
+  document.getElementById('msg-file-input').value='';
+}
+function formatFileSize(bytes){
+  if(bytes<1024)return bytes+' B';
+  if(bytes<1048576)return (bytes/1024).toFixed(1)+' KB';
+  return (bytes/1048576).toFixed(1)+' MB';
+}
+
 function sendMsg(){
   var input=document.getElementById('msg-input');
   var val=input.value.trim();
-  if(!val)return;
+  var hasFile=!!_msgAttachedFile;
+  if(!val&&!hasFile)return;
   var bubbles=document.getElementById('msg-bubbles');
   var b=document.createElement('div');
   b.className='msg-bubble mine';
-  b.textContent=val;
+  var now=new Date();
+  var timeStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' &middot; '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  var content='';
+  if(val)content+=val;
+  if(hasFile)content+=(val?'<br>':'')+'<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(255,255,255,.2);border-radius:6px;font-size:12px;margin-top:4px;">&#128206; '+_msgAttachedFile.name+'</span>';
+  content+='<span class="msg-time">'+timeStr+'</span>';
+  b.innerHTML=content;
   bubbles.appendChild(b);
   input.value='';
+  removeMsgFile();
   bubbles.scrollTop=bubbles.scrollHeight;
+  /* Simulate Twilio delivery */
   setTimeout(function(){
     var r=document.createElement('div');
     r.className='msg-bubble theirs';
-    r.textContent='Thank you for your message. Our team will respond shortly.';
+    r.innerHTML='Message received'+(hasFile?' with attachment':'')+'. Kenroy has been notified via email and text through Twilio. You\'ll receive a response shortly.<span class="msg-time">'+timeStr+' &middot; Auto-reply</span>';
     bubbles.appendChild(r);
     bubbles.scrollTop=bubbles.scrollHeight;
+    showToast('Message sent to Kenroy via Twilio.','success');
   },1200);
 }
 
@@ -1368,7 +1761,7 @@ function cbSend(){
     reply.className='cb-msg bot';
     var low=val.toLowerCase();
     if(low.indexOf('deadline')!==-1){
-      reply.textContent='Your next critical deadline is September 15, 2025 -- the Demurrer Response is due. The Case Management Conference is scheduled for October 2025. Discovery cutoff and trial date are still TBD.';
+      reply.textContent='Your next critical date is July 6, 2026 -- the Demurrer Hearing in Dept. F47. Cho still needs to be served. Discovery cutoff and trial date are TBD.';
     }else if(low.indexOf('document')!==-1){
       reply.textContent='You currently have 12 documents on file and 6 pending documents. The highest priority pending items are: DRE Complaint Filing, Certified Mail Receipts, Move-In Condition Photos, and Forwarding Address Proof.';
     }else if(low.indexOf('evidence')!==-1){
@@ -1377,13 +1770,13 @@ function cbSend(){
       var p=document.querySelectorAll('.ev-q-header .badge-gold').length;
       reply.textContent='Evidence Status: '+c+' items confirmed, '+e+' items exposed (need attention), and '+p+' items partial. Focus on the exposed items to strengthen your case.';
     }else if(low.indexOf('status')!==-1||low.indexOf('case')!==-1){
-      reply.textContent='Your case Mills v. Cho et al. (25CHCV02355) is in active litigation. The complaint was filed May 2025. A demurrer was filed by the defense in August 2025, and your opposition is due September 15, 2025.';
+      reply.textContent='Your case Mills v. Cho et al. (25CHCV02355) is in active litigation. The complaint was filed July 15, 2025. Defense counsel filed a demurrer. Demurrer hearing is set for July 6, 2026, Dept. F47. Allen Oh was served in Feb 2026. Cho service is still pending.';
     }else if(low.indexOf('attorney')!==-1||low.indexOf('lawyer')!==-1||low.indexOf('counsel')!==-1){
       reply.textContent='Your case is managed by SeedXchange, LLC / CREDITWITHKEN. For urgent matters, contact (661) 469-1141 or email info@seedxg.com.';
     }else if(low.indexOf('deposit')!==-1||low.indexOf('money')!==-1||low.indexOf('amount')!==-1){
-      reply.textContent='The security deposit at issue is $9,000.00. The property was at 25625 Birchleaf Ct., Valencia, CA 91381. Defendants include New Star Realty, Cho, and Alan Oh (Broker).';
+      reply.textContent='The security deposit at issue is $9,000.00 with potential 2x bad faith penalty ($18,000 recovery). The property was at 25625 Birchleaf Ct., Valencia, CA 91381. Defendants: Myung Ja Cho, New Star Realty Inc., and Alan Oh (Broker, DRE #01706967).';
     }else if(low.indexOf('upload')!==-1||low.indexOf('file')!==-1){
-      reply.textContent='To upload documents, navigate to the Evidence tab and use the upload zones under each question. You can also use the Documents tab to check what\'s still needed.';
+      reply.textContent='To upload documents, go to the Documents tab and click "Upload Document". You\'ll need to fill in the document name, section, date, from/to, and description. You can also upload files in the Evidence tab under each question, or attach files in the Messages tab.';
     }else if(low.indexOf('help')!==-1){
       reply.textContent='I can assist with: deadlines, documents, evidence status, case details, attorney contact info, and upload instructions. Just ask!';
     }else{
@@ -1399,22 +1792,31 @@ function switchThread(name){
   var contacts=document.querySelectorAll('.msg-contact');
   contacts.forEach(function(c){c.classList.remove('active');});
   contacts.forEach(function(c){if(c.querySelector('h4').textContent===name)c.classList.add('active');});
-  document.querySelector('.msg-thread-header').textContent=name;
+  var header=document.getElementById('msg-thread-header');
+  if(name==='Kenroy Eckman'){
+    header.innerHTML='Kenroy Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span>';
+  }else{
+    header.textContent=name;
+  }
   var bubbles=document.getElementById('msg-bubbles');
   bubbles.innerHTML='';
-  if(name==='SeedXchange Legal'){
+  if(name==='Kenroy Eckman'){
+    bubbles.innerHTML='<div class="msg-bubble theirs">Hi Peter, welcome to your secure message channel. Messages here are sent directly to me via email and text through Twilio. You can also attach files using the paperclip icon. How can I help?<span class="msg-time">Feb 27, 2026 &middot; System</span></div>';
+  }else if(name==='SeedXchange Legal'){
     bubbles.innerHTML='<div class="msg-bubble mine">Hi, I have a question about the demurrer deadline. When is it due?<span class="msg-time">Aug 12, 2025 &middot; 2:34 PM</span></div>'
       +'<div class="msg-bubble theirs">The demurrer response is due September 15, 2025. We\'re preparing the opposition now.<span class="msg-time">Aug 12, 2025 &middot; 2:41 PM</span></div>'
       +'<div class="msg-bubble mine">Do I need to provide anything else?<span class="msg-time">Aug 12, 2025 &middot; 2:43 PM</span></div>'
       +'<div class="msg-bubble theirs">Yes &mdash; we need your move-in photos and forwarding address documentation. Please upload through the Evidence section.<span class="msg-time">Aug 12, 2025 &middot; 2:48 PM</span></div>';
   }else if(name==='Court Notifications'){
-    bubbles.innerHTML='<div class="msg-bubble theirs">CMC scheduling notice received &mdash; Department F47, October 2025. Please confirm attendance.<span class="msg-time">Aug 20, 2025 &middot; 9:15 AM</span></div>'
-      +'<div class="msg-bubble mine">Confirmed, will attend.<span class="msg-time">Aug 20, 2025 &middot; 10:02 AM</span></div>';
+    bubbles.innerHTML='<div class="msg-bubble theirs">CMC scheduling notice received &mdash; Department F47. Please confirm attendance.<span class="msg-time">Feb 2026 &middot; 9:15 AM</span></div>'
+      +'<div class="msg-bubble mine">Confirmed, will attend.<span class="msg-time">Feb 2026 &middot; 10:02 AM</span></div>';
   }else if(name==='HIRECAR Support'){
-    bubbles.innerHTML='<div class="msg-bubble theirs">Welcome to HIRECAR Support. How can we assist you with your case portal?<span class="msg-time">Aug 18, 2025 &middot; 11:00 AM</span></div>'
-      +'<div class="msg-bubble mine">How do I upload evidence?<span class="msg-time">Aug 18, 2025 &middot; 11:05 AM</span></div>'
-      +'<div class="msg-bubble theirs">Navigate to the Evidence tab, find the relevant question, and use the upload zone below it. You can drag and drop or click to browse files.<span class="msg-time">Aug 18, 2025 &middot; 11:06 AM</span></div>';
+    bubbles.innerHTML='<div class="msg-bubble theirs">Welcome to HIRECAR Support. How can we assist you with your case portal?<span class="msg-time">Feb 2026 &middot; 11:00 AM</span></div>'
+      +'<div class="msg-bubble mine">How do I upload evidence?<span class="msg-time">Feb 2026 &middot; 11:05 AM</span></div>'
+      +'<div class="msg-bubble theirs">Navigate to the Evidence tab, find the relevant question, and use the upload zone below it. You can also use the Documents tab to click "Upload Document" for file uploads with metadata.<span class="msg-time">Feb 2026 &middot; 11:06 AM</span></div>';
   }
+  document.getElementById('msg-file-area').innerHTML='';
+  _msgAttachedFile=null;
   bubbles.scrollTop=bubbles.scrollHeight;
 }
 
@@ -1426,6 +1828,201 @@ function filterDocs(q){
     card.style.display=text.indexOf(low)!==-1?'flex':'none';
   });
 }
+
+/* ===== GOALS & TEMPERATURE CHECK ===== */
+(function(){
+  /* Goal chips */
+  document.querySelectorAll('.goal-chips').forEach(function(group){
+    group.querySelectorAll('.goal-chip').forEach(function(chip){
+      chip.addEventListener('click',function(){
+        group.querySelectorAll('.goal-chip').forEach(function(c){c.classList.remove('selected');});
+        chip.classList.add('selected');
+      });
+    });
+  });
+})();
+function saveGoals(){
+  var outcome=document.querySelector('#goal-outcome-chips .goal-chip.selected');
+  var settlement=document.getElementById('goal-settlement').value;
+  var priority=document.querySelector('#goal-priority-chips .goal-chip.selected');
+  var temp=document.getElementById('temp-slider').value;
+  var notes=document.getElementById('goal-notes').value;
+  var data={
+    outcome:outcome?outcome.getAttribute('data-val'):'',
+    settlement:settlement,
+    priority:priority?priority.getAttribute('data-val'):'',
+    temperature:temp,
+    notes:notes,
+    savedAt:new Date().toISOString()
+  };
+  try{localStorage.setItem('pm_goals',JSON.stringify(data));}catch(e){}
+  showToast('Goals & temperature saved successfully.','success');
+}
+/* Restore saved goals */
+(function(){
+  try{
+    var saved=localStorage.getItem('pm_goals');
+    if(!saved)return;
+    var data=JSON.parse(saved);
+    if(data.outcome){
+      document.querySelectorAll('#goal-outcome-chips .goal-chip').forEach(function(c){
+        if(c.getAttribute('data-val')===data.outcome)c.classList.add('selected');
+      });
+    }
+    if(data.settlement)document.getElementById('goal-settlement').value=data.settlement;
+    if(data.priority){
+      document.querySelectorAll('#goal-priority-chips .goal-chip').forEach(function(c){
+        if(c.getAttribute('data-val')===data.priority)c.classList.add('selected');
+      });
+    }
+    if(data.temperature){
+      document.getElementById('temp-slider').value=data.temperature;
+      document.getElementById('temp-display').textContent=data.temperature;
+      var c=data.temperature<=3?'var(--error)':data.temperature<=6?'var(--gold)':'var(--success)';
+      document.getElementById('temp-display').style.color=c;
+    }
+    if(data.notes)document.getElementById('goal-notes').value=data.notes;
+  }catch(e){}
+})();
+
+/* ===== DOCUMENT UPLOAD MODAL ===== */
+var _uploadedDocs=[];
+function openDocUpload(){
+  document.getElementById('doc-upload-overlay').classList.add('open');
+  document.getElementById('doc-upload-name').value='';
+  document.getElementById('doc-upload-section').value='';
+  document.getElementById('doc-upload-date').value='';
+  document.getElementById('doc-upload-from').value='Peter Mills';
+  document.getElementById('doc-upload-to').value='';
+  document.getElementById('doc-upload-desc').value='';
+  document.getElementById('doc-file-input').value='';
+  document.getElementById('doc-upload-preview-area').innerHTML='';
+  var drop=document.getElementById('doc-upload-drop');
+  drop.classList.remove('has-file');
+  drop.querySelector('p').textContent='Drag & drop your file here, or click to browse';
+}
+function closeDocUpload(){
+  document.getElementById('doc-upload-overlay').classList.remove('open');
+}
+/* File input handling */
+document.getElementById('doc-file-input').addEventListener('change',function(){
+  if(!this.files||!this.files.length)return;
+  var file=this.files[0];
+  var drop=document.getElementById('doc-upload-drop');
+  drop.classList.add('has-file');
+  drop.querySelector('p').textContent=file.name+' ('+formatFileSize(file.size)+')';
+  /* Auto-fill name if empty */
+  var nameInput=document.getElementById('doc-upload-name');
+  if(!nameInput.value){
+    var cleanName=file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+    nameInput.value=cleanName;
+  }
+  /* Show thumbnail preview */
+  var previewArea=document.getElementById('doc-upload-preview-area');
+  previewArea.innerHTML='';
+  if(file.type.startsWith('image/')){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb"><img src="'+e.target.result+'"></div><div class="preview-info"><div class="preview-name">'+file.name+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
+    };
+    reader.readAsDataURL(file);
+  }else{
+    var icon=file.type==='application/pdf'?'&#128196;':file.name.match(/\.docx?$/i)?'&#128196;':'&#128195;';
+    previewArea.innerHTML='<div class="doc-upload-preview"><div class="preview-thumb">'+icon+'</div><div class="preview-info"><div class="preview-name">'+file.name+'</div><div class="preview-size">'+formatFileSize(file.size)+'</div></div></div>';
+  }
+});
+/* Drag and drop */
+(function(){
+  var drop=document.getElementById('doc-upload-drop');
+  drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='var(--gold)';drop.style.background='rgba(184,146,42,.06)';});
+  drop.addEventListener('dragleave',function(){drop.style.borderColor='';drop.style.background='';});
+  drop.addEventListener('drop',function(e){
+    e.preventDefault();
+    drop.style.borderColor='';drop.style.background='';
+    if(e.dataTransfer.files.length){
+      var fi=document.getElementById('doc-file-input');
+      fi.files=e.dataTransfer.files;
+      fi.dispatchEvent(new Event('change'));
+    }
+  });
+})();
+
+function submitDocUpload(){
+  var name=document.getElementById('doc-upload-name').value.trim();
+  var section=document.getElementById('doc-upload-section').value;
+  var date=document.getElementById('doc-upload-date').value;
+  var from=document.getElementById('doc-upload-from').value.trim();
+  var desc=document.getElementById('doc-upload-desc').value.trim();
+  var to=document.getElementById('doc-upload-to').value.trim();
+  var fileInput=document.getElementById('doc-file-input');
+  if(!name){showToast('Please enter a document name.','error');return;}
+  if(!section){showToast('Please select the complaint section.','error');return;}
+  if(!date){showToast('Please enter the document date.','error');return;}
+  if(!from){showToast('Please enter the document source.','error');return;}
+  if(!desc){showToast('Please enter a description.','error');return;}
+  if(!fileInput.files||!fileInput.files.length){showToast('Please select a file to upload.','error');return;}
+  var file=fileInput.files[0];
+  var sectionLabels={'COA1':'Security Deposit','COA2':'Breach of Contract','COA3':'Habitability','COA4':'Fraud','COA5':'UCL','COA6':'Negligence','general':'General','service':'Service','correspondence':'Correspondence'};
+  var doc={
+    name:name,section:section,sectionLabel:sectionLabels[section]||section,
+    date:date,from:from,to:to,desc:desc,
+    fileName:file.name,fileSize:file.size,fileType:file.type,
+    thumbUrl:null,uploadedAt:new Date().toISOString()
+  };
+  /* Generate thumbnail */
+  if(file.type.startsWith('image/')){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      doc.thumbUrl=e.target.result;
+      _uploadedDocs.push(doc);
+      renderUploadedDocs();
+      try{localStorage.setItem('pm_uploaded_docs',JSON.stringify(_uploadedDocs));}catch(ex){}
+    };
+    reader.readAsDataURL(file);
+  }else{
+    _uploadedDocs.push(doc);
+    renderUploadedDocs();
+    try{localStorage.setItem('pm_uploaded_docs',JSON.stringify(_uploadedDocs));}catch(ex){}
+  }
+  closeDocUpload();
+  showToast('Document "'+name+'" uploaded successfully.','success');
+}
+
+function renderUploadedDocs(){
+  var grid=document.getElementById('doc-thumb-grid');
+  var section=document.getElementById('uploaded-docs-section');
+  if(!_uploadedDocs.length){section.style.display='none';return;}
+  section.style.display='block';
+  grid.innerHTML='';
+  _uploadedDocs.forEach(function(doc,idx){
+    var thumb=document.createElement('div');
+    thumb.className='doc-thumb';
+    var previewHtml='';
+    if(doc.thumbUrl){
+      previewHtml='<img src="'+doc.thumbUrl+'" alt="'+doc.name+'">';
+    }else{
+      var icon=doc.fileType==='application/pdf'?'&#128196;':doc.fileName.match(/\.docx?$/i)?'&#128196;':'&#128195;';
+      previewHtml='<span style="font-size:40px;">'+icon+'</span>';
+    }
+    var dateStr='';
+    try{dateStr=new Date(doc.date+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){dateStr=doc.date;}
+    thumb.innerHTML='<div class="thumb-preview">'+previewHtml+'<span class="thumb-badge badge badge-green" style="font-size:9px;">UPLOADED</span></div>'
+      +'<div class="thumb-info"><div class="thumb-title" title="'+doc.name+'">'+doc.name+'</div>'
+      +'<div class="thumb-meta">'+doc.sectionLabel+' &bull; '+dateStr+'</div>'
+      +'<div class="thumb-meta">From: '+doc.from+(doc.to?' &rarr; '+doc.to:'')+'</div></div>';
+    thumb.onclick=function(){
+      showToast(doc.name+': '+doc.desc,'info');
+    };
+    grid.appendChild(thumb);
+  });
+}
+/* Restore uploaded docs from localStorage */
+(function(){
+  try{
+    var saved=localStorage.getItem('pm_uploaded_docs');
+    if(saved){_uploadedDocs=JSON.parse(saved);renderUploadedDocs();}
+  }catch(e){}
+})();
 
 /* ===== TOAST ===== */
 function showToast(msg,type){
