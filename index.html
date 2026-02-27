@@ -407,6 +407,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
       <button class="menu-tab" data-sec="sec-evidence">Evidence</button>
       <button class="menu-tab" data-sec="sec-communications">Communications</button>
       <button class="menu-tab" data-sec="sec-messages">Messages<span class="tab-badge tab-badge-red">3</span></button>
+      <button class="menu-tab" data-sec="sec-billing">Billing</button>
     </div>
     <div class="menu-user">
       <span class="uname">Peter Mills</span>
@@ -807,11 +808,13 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q1: Was the disposition statement received within 21 calendar days of move-out?</span></div>
             <div class="ev-note ok">CA Civil Code &sect;1950.5(g) requires landlord to return deposit or provide itemized statement within 21 days. Failure = automatic bad faith.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q1" value="yes"> Yes</label><label><input type="radio" name="q1" value="no"> No</label><label><input type="radio" name="q1" value="unsure"> Unsure</label><label><input type="radio" name="q1" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload disposition statement or proof of receipt date</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q2: Did the disposition include an itemized list of deductions?</span></div>
             <div class="ev-note ok">Itemized statement is mandatory. Confirmed &mdash; deductions were listed.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q2" value="yes"> Yes</label><label><input type="radio" name="q2" value="no"> No</label><label><input type="radio" name="q2" value="unsure"> Unsure</label><label><input type="radio" name="q2" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload itemized deduction statement</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q3: Deposit &amp; Move-Out Details</span></div>
@@ -824,6 +827,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
               <div><label style="font-size:13px;font-weight:600;">Amount returned</label><input type="text" class="ev-input" data-req="1" placeholder="$0.00"></div>
             </div>
             <div style="margin-top:8px;"><label style="font-size:13px;font-weight:600;">Amount withheld</label><input type="text" class="ev-input" data-req="1" placeholder="$0.00" style="max-width:300px;"></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload lease agreement, deposit receipt, or move-out documentation</p><input type="file" multiple></div>
           </div>
         </div>
       </div>
@@ -839,16 +843,19 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             <div class="ev-q-header"><span class="badge badge-red">EXPOSED</span><span class="ev-q-label">Q4: Were actual receipts (not estimates) attached to the disposition?</span></div>
             <div class="ev-note warn">Landlord must provide actual receipts. If only estimates were used, landlord had 14 additional days to provide actuals. Failure strengthens bad faith claim.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q4" value="yes"> Yes</label><label><input type="radio" name="q4" value="no"> No</label><label><input type="radio" name="q4" value="unsure"> Unsure</label><label><input type="radio" name="q4" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload receipts or estimates from disposition</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-red">EXPOSED</span><span class="ev-q-label">Q5: Were vendor names and contractor license numbers listed?</span></div>
             <div class="ev-note warn">CA law requires vendor identification. Missing vendor info = potential unlicensed work and inflated charges.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q5" value="yes"> Yes</label><label><input type="radio" name="q5" value="no"> No</label><label><input type="radio" name="q5" value="unsure"> Unsure</label><label><input type="radio" name="q5" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload vendor invoices, contractor info, or license records</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q6: Were deduction amounts rounded or clearly estimated (not actual costs)?</span></div>
             <div class="ev-note ok">Rounded/estimated amounts prove landlord used estimates, not actual costs. This is a violation if receipts were not later provided.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q6" value="yes"> Yes</label><label><input type="radio" name="q6" value="no"> No</label><label><input type="radio" name="q6" value="unsure"> Unsure</label><label><input type="radio" name="q6" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload deduction breakdown or cost documentation</p><input type="file" multiple></div>
           </div>
         </div>
       </div>
@@ -892,11 +899,13 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q10: Was the property sold during or shortly after the deposit dispute?</span></div>
             <div class="ev-note ok">Property sale while withholding deposit shows landlord prioritized profit over legal obligations.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q10" value="yes"> Yes</label><label><input type="radio" name="q10" value="no"> No</label><label><input type="radio" name="q10" value="unsure"> Unsure</label><label><input type="radio" name="q10" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload property sale records, listing, or title transfer documentation</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-gold">PARTIAL</span><span class="ev-q-label">Q11: What was the escrow close date relative to your deposit demand?</span></div>
             <div class="ev-note info">Escrow timeline helps establish whether landlord had funds available to return deposit. Need exact close date.</div>
             <div style="margin-top:10px;"><label style="font-size:13px;font-weight:600;">Escrow Close Date</label><input type="date" class="ev-input" data-req="1" style="max-width:300px;"></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload escrow closing documents or timeline records</p><input type="file" multiple></div>
           </div>
         </div>
       </div>
@@ -913,6 +922,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             <div class="ev-note warn">CA law requires deposits be held in designated accounts. If funds were commingled or mishandled, this adds a cause of action.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q12" value="yes"> Yes</label><label><input type="radio" name="q12" value="no"> No</label><label><input type="radio" name="q12" value="unsure"> Unsure</label><label><input type="radio" name="q12" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
             <textarea class="ev-input" placeholder="Describe what you know about where the deposit was held..." style="margin-top:8px;"></textarea>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload trust account records, bank statements, or deposit documentation</p><input type="file" multiple></div>
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-green">CONFIRMED</span><span class="ev-q-label">Q13: Did Alan Oh (broker) negotiate the lease or deposit terms?</span></div>
@@ -924,6 +934,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
             <div class="ev-q-header"><span class="badge badge-red">EXPOSED</span><span class="ev-q-label">Q14: Did Alan Oh receive compensation from the property sale transaction?</span></div>
             <div class="ev-note warn">If broker profited from the sale while your deposit was wrongfully withheld, this shows conflict of interest.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q14" value="yes"> Yes</label><label><input type="radio" name="q14" value="no"> No</label><label><input type="radio" name="q14" value="unsure"> Unsure</label><label><input type="radio" name="q14" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload sale transaction records, commission documentation, or MLS records</p><input type="file" multiple></div>
           </div>
         </div>
       </div>
@@ -943,8 +954,9 @@ textarea.ev-input{min-height:80px;resize:vertical;}
           </div>
           <div class="ev-question">
             <div class="ev-q-header"><span class="badge badge-gold">PARTIAL</span><span class="ev-q-label">Q16: Has a DRE (Department of Real Estate) complaint been filed?</span></div>
-            <div class="ev-note info">Filing a DRE complaint creates regulatory pressure and shows diligence. Recommended to file if not already done.</div>
+            <div class="ev-note info">Filing a DRE complaint creates regulatory pressure and shows diligence. DRE complaint filed April 18, 2025 against Alan Oh.</div>
             <div class="radio-group" data-req="1"><label><input type="radio" name="q16" value="yes"> Yes</label><label><input type="radio" name="q16" value="no"> No</label><label><input type="radio" name="q16" value="unsure"> Unsure</label><label><input type="radio" name="q16" value="confirmed"> Confirmed &mdash; Already Submitted</label></div>
+            <div class="upload-zone" onclick="this.querySelector('input').click()"><div class="uz-icon">&#128228;</div><p>Upload DRE complaint filing or confirmation</p><input type="file" multiple></div>
           </div>
         </div>
       </div>
@@ -994,14 +1006,100 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <div class="accent-bar"></div>
         <h2>Counsel Communications</h2>
       </div>
-      <div class="comm-thread">
-        <div class="comm-card"><div class="comm-avatar legal">SX</div><div class="comm-body"><span class="comm-date">March 31, 2025</span><div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div><p class="comm-preview">Engagement confirmed. Legal research and document preparation underway.</p></div></div>
-        <div class="comm-card"><div class="comm-avatar opp">OC</div><div class="comm-body"><span class="comm-date">Feb 2025</span><div class="comm-sender">Opposing Counsel <span class="comm-role">&mdash; Defense</span></div><p class="comm-preview">Meet-and-confer letter received. Response pending.</p></div></div>
-        <div class="comm-card"><div class="comm-avatar legal">SX</div><div class="comm-body"><span class="comm-date">April 2025</span><div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div><p class="comm-preview">Verified Complaint drafted and ready for review.</p></div></div>
-        <div class="comm-card"><div class="comm-avatar legal">SX</div><div class="comm-body"><span class="comm-date">May 2025</span><div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div><p class="comm-preview">Complaint filed with LA County Superior Court. Case No. 25CHCV02355 assigned.</p><span class="comm-attach">&#128206; Complaint_Filed_Confirmation.pdf</span></div></div>
-        <div class="comm-card unread"><div class="comm-avatar legal">SX</div><div class="comm-body"><span class="comm-date">August 2025</span><div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div><p class="comm-preview">Demurrer response preparation in progress. Deadline: September 15, 2025.</p><span class="comm-attach">&#128206; Demurrer_Analysis.pdf</span></div></div>
-        <div class="comm-card unread"><div class="comm-avatar court">CC</div><div class="comm-body"><span class="comm-date">Recent</span><div class="comm-sender">Court Clerk <span class="comm-role">&mdash; LA County Superior Court</span></div><p class="comm-preview">Case Management Conference scheduling notice.</p></div></div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Upload emails and documents for each communication entry. Click the download button to save any attachment.</p>
+      <div style="text-align:right;margin-bottom:16px;">
+        <button class="btn-primary" style="padding:10px 24px;font-size:14px;" onclick="openCommUpload()">+ Add Communication</button>
       </div>
+
+      <div class="comm-thread" id="comm-thread">
+        <div class="comm-card" data-comm-id="c1">
+          <div class="comm-avatar legal">SX</div>
+          <div class="comm-body">
+            <span class="comm-date">March 31, 2025</span>
+            <div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div>
+            <p class="comm-preview">Engagement confirmed. Legal research and document preparation underway.</p>
+            <div class="comm-files" id="comm-files-c1"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c1')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c2">
+          <div class="comm-avatar opp">OC</div>
+          <div class="comm-body">
+            <span class="comm-date">Feb 2025</span>
+            <div class="comm-sender">Opposing Counsel <span class="comm-role">&mdash; Defense</span></div>
+            <p class="comm-preview">Meet-and-confer letter received. Response pending.</p>
+            <div class="comm-files" id="comm-files-c2"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c2')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c3">
+          <div class="comm-avatar legal">SX</div>
+          <div class="comm-body">
+            <span class="comm-date">April 2025</span>
+            <div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div>
+            <p class="comm-preview">Verified Complaint drafted and ready for review.</p>
+            <div class="comm-files" id="comm-files-c3"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c3')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c4">
+          <div class="comm-avatar legal">SX</div>
+          <div class="comm-body">
+            <span class="comm-date">July 2025</span>
+            <div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div>
+            <p class="comm-preview">Complaint filed with LA County Superior Court. Case No. 25CHCV02355 assigned.</p>
+            <div class="comm-files" id="comm-files-c4"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c4')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c5">
+          <div class="comm-avatar opp">RF</div>
+          <div class="comm-body">
+            <span class="comm-date">November 2025</span>
+            <div class="comm-sender">Roger Fainbuch <span class="comm-role">&mdash; Defense Counsel</span></div>
+            <p class="comm-preview">Demurrer filed on behalf of Allen/New Star Realty. Hearing set for July 6, 2026.</p>
+            <div class="comm-files" id="comm-files-c5"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c5')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c6">
+          <div class="comm-avatar legal">SX</div>
+          <div class="comm-body">
+            <span class="comm-date">February 2026</span>
+            <div class="comm-sender">SeedXchange Legal Team <span class="comm-role">&mdash; Service Provider</span></div>
+            <p class="comm-preview">Allen Oh personally served. Demurrer opposition preparation in progress for July 6, 2026 hearing.</p>
+            <div class="comm-files" id="comm-files-c6"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c6')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+        <div class="comm-card" data-comm-id="c7">
+          <div class="comm-avatar court">CC</div>
+          <div class="comm-body">
+            <span class="comm-date">2026</span>
+            <div class="comm-sender">Court Clerk <span class="comm-role">&mdash; LA County Superior Court, Dept. F47</span></div>
+            <p class="comm-preview">Case Management Conference and demurrer hearing scheduling notices.</p>
+            <div class="comm-files" id="comm-files-c7"></div>
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+              <label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,'c7')" multiple> + Attach File</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User-added communications appear here -->
+      <div id="comm-user-entries"></div>
     </div>
 
     <!-- ===== MESSAGES ===== -->
@@ -1010,16 +1108,16 @@ textarea.ev-input{min-height:80px;resize:vertical;}
         <div class="accent-bar"></div>
         <h2>Message Center</h2>
       </div>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Send messages to Kenroy Eckman (SeedXchange / CreditWithKen) via Twilio. Messages are delivered to email and text. You can also attach documents.</p>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Send messages to Ken Eckman (SeedXchange / CreditWithKen) via Twilio. Messages are delivered to email and text. You can also attach documents.</p>
       <div class="msg-container">
         <div class="msg-contacts">
-          <div class="msg-contact active" onclick="switchThread('Kenroy Eckman')"><h4>Kenroy Eckman</h4><p style="font-size:11px;color:var(--gold);">SeedXchange / CreditWithKen</p><p>Direct line &mdash; email + text</p></div>
+          <div class="msg-contact active" onclick="switchThread('Ken Eckman')"><h4>Ken Eckman</h4><p style="font-size:11px;color:var(--gold);">SeedXchange / CreditWithKen</p><p>Direct line &mdash; email + text</p></div>
           <div class="msg-contact" onclick="switchThread('SeedXchange Legal')"><h4>SeedXchange Legal</h4><p>Yes &mdash; we need your move-in photos...</p></div>
           <div class="msg-contact" onclick="switchThread('Court Notifications')"><h4>Court Notifications</h4><p>CMC scheduling notice...</p></div>
           <div class="msg-contact" onclick="switchThread('HIRECAR Support')"><h4>HIRECAR Support</h4><p>How can we help?</p></div>
         </div>
         <div class="msg-thread">
-          <div class="msg-thread-header" id="msg-thread-header">Kenroy Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span></div>
+          <div class="msg-thread-header" id="msg-thread-header">Ken Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span></div>
           <div class="msg-bubbles" id="msg-bubbles">
             <div class="msg-bubble theirs">Hi Peter, welcome to your secure message channel. Messages here are sent directly to me via email and text through Twilio. You can also attach files using the paperclip icon. How can I help?<span class="msg-time">Feb 27, 2026 &middot; System</span></div>
           </div>
@@ -1027,11 +1125,133 @@ textarea.ev-input{min-height:80px;resize:vertical;}
           <div class="msg-input-bar">
             <button class="msg-attach-btn" onclick="document.getElementById('msg-file-input').click()" title="Attach file">&#128206;</button>
             <input type="file" id="msg-file-input" style="display:none;" onchange="handleMsgFileAttach(this)">
-            <input type="text" id="msg-input" placeholder="Type a message to Kenroy..." onkeydown="if(event.key==='Enter')sendMsg()">
+            <input type="text" id="msg-input" placeholder="Type a message to Ken Eckman..." onkeydown="if(event.key==='Enter')sendMsg()">
             <button class="msg-send-btn" onclick="sendMsg()">&#9654;</button>
           </div>
-          <div class="msg-twilio-note">Powered by Twilio &mdash; messages delivered to Kenroy via email (info@seedxg.com) and text (661-469-1141)</div>
+          <div class="msg-twilio-note">Powered by Twilio &mdash; copies sent to: Ken Eckman (info@seedxg.com / 661-469-1141), Legal at HIRECAR (legal@hirecar.la), and Peter Mills via SMS. Messages from SeedXchange re: Legal Research Agreement.</div>
         </div>
+      </div>
+    </div>
+
+    <!-- ===== BILLING ===== -->
+    <div id="sec-billing" class="section">
+      <div class="conf-header">
+        <span class="conf-label">Confidential &mdash; Billing &amp; Agreement</span>
+        <span class="conf-case">SeedXchange, LLC / CreditWithKen</span>
+      </div>
+      <div class="sec-header">
+        <div class="accent-bar"></div>
+        <h2>Billing &amp; Service Agreement</h2>
+      </div>
+
+      <!-- Service Agreement Summary -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Service Agreement Summary</h3>
+        <div class="case-overview">
+          <div class="case-row"><span class="case-label">Service Provider</span><span class="case-val">SeedXchange, LLC / CreditWithKen</span></div>
+          <div class="case-row"><span class="case-label">Client</span><span class="case-val">Peter T. Mills</span></div>
+          <div class="case-row"><span class="case-label">Service Type</span><span class="case-val">Consumer Law Research &amp; Document Preparation + Credit Clean Up</span></div>
+          <div class="case-row"><span class="case-label">Engagement Date</span><span class="case-val">March 31, 2025</span></div>
+          <div class="case-row"><span class="case-label">Case Reference</span><span class="case-val">Mills v. Cho et al. &mdash; 25CHCV02355</span></div>
+          <div class="case-row"><span class="case-label">Total Service Fee</span><span class="case-val" style="font-weight:700;color:var(--gold);">$18,050.00</span></div>
+          <div class="case-row"><span class="case-label">Down Payment</span><span class="case-val">$3,500.00</span></div>
+          <div class="case-row"><span class="case-label">Remaining Balance</span><span class="case-val" style="font-weight:700;color:var(--error);">$14,550.00</span></div>
+        </div>
+      </div>
+
+      <!-- Payment History -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">Payment History</h3>
+        <div style="overflow-x:auto;">
+          <table class="coa-table">
+            <thead>
+              <tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>March 31, 2025</td>
+                <td>Down Payment &mdash; Engagement Fee</td>
+                <td style="font-weight:700;">$3,500.00</td>
+                <td><span class="badge badge-green">PAID</span></td>
+              </tr>
+              <tr>
+                <td>Ongoing</td>
+                <td>Remaining Balance &mdash; Service Fee</td>
+                <td style="font-weight:700;color:var(--error);">$14,550.00</td>
+                <td><span class="badge badge-gold">OUTSTANDING</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Best / Worst Case -->
+      <div class="card" style="border:1px solid var(--gold);border-left:4px solid var(--gold);">
+        <h3 style="margin-bottom:12px;">Case Outcome Projections</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="padding:20px;background:rgba(26,107,60,.04);border-radius:10px;border:1px solid rgba(26,107,60,.2);">
+            <h4 style="color:var(--success);margin-bottom:8px;font-family:'DM Sans',sans-serif;">Best Case Scenario</h4>
+            <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--success);margin-bottom:8px;">$18,000+</div>
+            <ul style="font-size:13px;color:var(--muted);list-style:disc;padding-left:18px;line-height:1.8;">
+              <li>Full deposit return: $9,000</li>
+              <li>2x bad faith penalty (CC &sect;1950.5(l)): $9,000</li>
+              <li>Potential additional damages (fraud, UCL)</li>
+              <li>Attorney fees &amp; costs recovery</li>
+              <li>All 6 causes of action prevail</li>
+            </ul>
+          </div>
+          <div style="padding:20px;background:rgba(192,57,43,.04);border-radius:10px;border:1px solid rgba(192,57,43,.2);">
+            <h4 style="color:var(--error);margin-bottom:8px;font-family:'DM Sans',sans-serif;">Worst Case Scenario</h4>
+            <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--error);margin-bottom:8px;">$0 &ndash; $4,500</div>
+            <ul style="font-size:13px;color:var(--muted);list-style:disc;padding-left:18px;line-height:1.8;">
+              <li>Demurrer sustained on weaker causes</li>
+              <li>Partial deposit return only</li>
+              <li>Deductions partially upheld by court</li>
+              <li>Service issues delay Cho proceedings</li>
+              <li>Settlement below full recovery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms & Conditions -->
+      <div class="card" style="border:1px solid var(--ink);">
+        <h3 style="margin-bottom:8px;">Terms &amp; Conditions</h3>
+        <div style="max-height:200px;overflow-y:auto;padding:16px;background:var(--cream);border-radius:8px;font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px;">
+          <p><strong>SEEDXCHANGE, LLC / CREDITWITHKEN LEGAL RESEARCH &amp; DOCUMENT PREPARATION AGREEMENT</strong></p>
+          <p style="margin-top:8px;">1. <strong>Scope of Services:</strong> SeedXchange, LLC (&ldquo;Provider&rdquo;) provides consumer law research, document preparation, and credit clean-up services. Provider does NOT provide legal advice, legal representation, or act as an attorney. Provider is NOT a law firm.</p>
+          <p style="margin-top:6px;">2. <strong>No Attorney-Client Relationship:</strong> Use of Provider&rsquo;s services does not create an attorney-client relationship. If legal representation is required, Client must retain a licensed attorney independently.</p>
+          <p style="margin-top:6px;">3. <strong>Service Fee:</strong> Total service fee is $18,050.00 with a down payment of $3,500.00 due at engagement. Remaining balance is payable per agreed schedule.</p>
+          <p style="margin-top:6px;">4. <strong>No Guarantee of Outcomes:</strong> Provider makes no guarantees regarding case outcomes, settlement amounts, or recovery. Results depend on facts, opposing party behavior, and court determinations.</p>
+          <p style="margin-top:6px;">5. <strong>Confidentiality:</strong> All communications, documents, and case information are treated as confidential. Provider will not disclose Client information to third parties except as required by law or as authorized by Client.</p>
+          <p style="margin-top:6px;">6. <strong>Client Obligations:</strong> Client agrees to provide truthful, complete information and documentation. Client acknowledges that incomplete or inaccurate information may adversely affect service quality.</p>
+          <p style="margin-top:6px;">7. <strong>Communication:</strong> All communications regarding this engagement will be routed through the HIRECAR Member Services Portal and/or via Twilio-powered messaging (SMS/email). Messages are sent from SeedXchange regarding the Legal Research Agreement.</p>
+          <p style="margin-top:6px;">8. <strong>Intellectual Property:</strong> All research, templates, methodologies, and frameworks used by Provider are proprietary to SeedXchange, LLC / CreditWithKen, LLC / HIRECAR, LLC.</p>
+          <p style="margin-top:6px;">9. <strong>Governing Law:</strong> This agreement is governed by the laws of the State of California.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:rgba(184,146,42,.06);border-radius:8px;" id="tc-container">
+          <input type="checkbox" id="tc-checkbox" style="width:20px;height:20px;accent-color:var(--gold);margin-top:2px;cursor:pointer;flex-shrink:0;" onchange="acceptTerms(this)">
+          <label for="tc-checkbox" style="font-size:14px;cursor:pointer;">I, <strong>Peter T. Mills</strong>, have read, understand, and accept the Terms &amp; Conditions of the SeedXchange, LLC / CreditWithKen Legal Research &amp; Document Preparation Agreement signed March 31, 2025.</label>
+        </div>
+        <div id="tc-status" style="margin-top:10px;font-size:13px;"></div>
+      </div>
+
+      <!-- Peter's Contact for SMS -->
+      <div class="card">
+        <h3 style="margin-bottom:12px;">SMS Notification Settings</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Peter will receive SMS copies of all portal messages from SeedXchange regarding the Legal Research Agreement.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Peter's Phone Number</label>
+            <input type="tel" class="ev-input" id="peter-phone" placeholder="(XXX) XXX-XXXX" style="max-width:300px;">
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px;">Peter's Email</label>
+            <input type="email" class="ev-input" id="peter-email" placeholder="peter@email.com" style="max-width:300px;">
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;">SMS messages will appear as: <strong>&ldquo;SeedXchange Legal Research &mdash; Mills v. Cho et al. (25CHCV02355)&rdquo;</strong></p>
+        <button class="btn-primary" style="margin-top:12px;padding:10px 24px;font-size:14px;" onclick="saveSmsSettings()">Save Contact Settings</button>
       </div>
     </div>
 
@@ -1718,10 +1938,10 @@ function sendMsg(){
   setTimeout(function(){
     var r=document.createElement('div');
     r.className='msg-bubble theirs';
-    r.innerHTML='Message received'+(hasFile?' with attachment':'')+'. Kenroy has been notified via email and text through Twilio. You\'ll receive a response shortly.<span class="msg-time">'+timeStr+' &middot; Auto-reply</span>';
+    r.innerHTML='Message received'+(hasFile?' with attachment':'')+'. Copies sent to: Ken Eckman (email + text), Legal at HIRECAR, and Peter Mills via SMS. From: SeedXchange re: Legal Research Agreement.<span class="msg-time">'+timeStr+' &middot; Auto-reply</span>';
     bubbles.appendChild(r);
     bubbles.scrollTop=bubbles.scrollHeight;
-    showToast('Message sent to Kenroy via Twilio.','success');
+    showToast('Message sent to Ken Eckman via Twilio.','success');
   },1200);
 }
 
@@ -1793,14 +2013,14 @@ function switchThread(name){
   contacts.forEach(function(c){c.classList.remove('active');});
   contacts.forEach(function(c){if(c.querySelector('h4').textContent===name)c.classList.add('active');});
   var header=document.getElementById('msg-thread-header');
-  if(name==='Kenroy Eckman'){
-    header.innerHTML='Kenroy Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span>';
+  if(name==='Ken Eckman'){
+    header.innerHTML='Ken Eckman <span style="font-size:12px;color:var(--muted);font-weight:400;margin-left:8px;">via Twilio &bull; email + text</span>';
   }else{
     header.textContent=name;
   }
   var bubbles=document.getElementById('msg-bubbles');
   bubbles.innerHTML='';
-  if(name==='Kenroy Eckman'){
+  if(name==='Ken Eckman'){
     bubbles.innerHTML='<div class="msg-bubble theirs">Hi Peter, welcome to your secure message channel. Messages here are sent directly to me via email and text through Twilio. You can also attach files using the paperclip icon. How can I help?<span class="msg-time">Feb 27, 2026 &middot; System</span></div>';
   }else if(name==='SeedXchange Legal'){
     bubbles.innerHTML='<div class="msg-bubble mine">Hi, I have a question about the demurrer deadline. When is it due?<span class="msg-time">Aug 12, 2025 &middot; 2:34 PM</span></div>'
@@ -2021,6 +2241,171 @@ function renderUploadedDocs(){
   try{
     var saved=localStorage.getItem('pm_uploaded_docs');
     if(saved){_uploadedDocs=JSON.parse(saved);renderUploadedDocs();}
+  }catch(e){}
+})();
+
+/* ===== COMMUNICATION FILE ATTACH & DOWNLOAD ===== */
+var _commFiles={};
+function attachCommFile(input,commId){
+  if(!input.files||!input.files.length)return;
+  if(!_commFiles[commId])_commFiles[commId]=[];
+  for(var i=0;i<input.files.length;i++){
+    var f=input.files[i];
+    var reader=new FileReader();
+    (function(file,cid){
+      reader.onload=function(e){
+        _commFiles[cid].push({name:file.name,size:file.size,type:file.type,dataUrl:e.target.result});
+        renderCommFiles(cid);
+        showToast(file.name+' attached to communication.','success');
+      };
+      reader.readAsDataURL(file);
+    })(f,commId);
+  }
+  input.value='';
+}
+function renderCommFiles(commId){
+  var container=document.getElementById('comm-files-'+commId);
+  if(!container)return;
+  var files=_commFiles[commId]||[];
+  if(!files.length){container.innerHTML='';return;}
+  var html='';
+  files.forEach(function(f,idx){
+    html+='<div style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--cream);border-radius:6px;font-size:12px;margin:4px 4px 0 0;">';
+    html+='<span>&#128196;</span><span>'+f.name+' ('+formatFileSize(f.size)+')</span>';
+    html+='<a href="'+f.dataUrl+'" download="'+f.name+'" style="color:var(--gold);font-weight:700;text-decoration:none;margin-left:4px;" title="Download">&#11015;</a>';
+    html+='</div>';
+  });
+  container.innerHTML=html;
+}
+
+/* Add Communication Entry */
+function openCommUpload(){
+  var thread=document.getElementById('comm-user-entries');
+  var id='cu'+Date.now();
+  var card=document.createElement('div');
+  card.className='comm-card';
+  card.setAttribute('data-comm-id',id);
+  card.innerHTML='<div class="comm-avatar legal">PM</div>'
+    +'<div class="comm-body"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">'
+    +'<input type="text" class="ev-input" placeholder="Subject / Description" style="font-size:13px;">'
+    +'<input type="date" class="ev-input" style="font-size:13px;"></div>'
+    +'<div class="comm-sender">Peter Mills <span class="comm-role">&mdash; Client Upload</span></div>'
+    +'<div class="comm-files" id="comm-files-'+id+'"></div>'
+    +'<div style="margin-top:8px;"><label class="goal-chip" style="cursor:pointer;font-size:11px;padding:4px 10px;"><input type="file" style="display:none;" onchange="attachCommFile(this,\''+id+'\')" multiple> + Attach Email / Document</label></div>'
+    +'</div>';
+  thread.appendChild(card);
+  showToast('New communication entry added. Attach your files.','info');
+}
+
+/* ===== DOCUMENT COVER THUMBNAILS ===== */
+function generateDocCover(title,category,date){
+  var canvas=document.createElement('canvas');
+  canvas.width=160;canvas.height=120;
+  var ctx=canvas.getContext('2d');
+  /* Background */
+  ctx.fillStyle='#f5f2ee';
+  ctx.fillRect(0,0,160,120);
+  /* Top bar */
+  ctx.fillStyle='#0d0d0d';
+  ctx.fillRect(0,0,160,24);
+  /* Gold accent */
+  ctx.fillStyle='#b8922a';
+  ctx.fillRect(0,24,160,3);
+  /* Title text */
+  ctx.fillStyle='#b8922a';
+  ctx.font='bold 8px sans-serif';
+  ctx.fillText('MILLS v. CHO ET AL.',8,14);
+  ctx.fillStyle='#ffffff';
+  ctx.font='7px sans-serif';
+  ctx.fillText('25CHCV02355',120,14);
+  /* Document title */
+  ctx.fillStyle='#0d0d0d';
+  ctx.font='bold 11px serif';
+  var words=title.split(' ');
+  var line='',y=46;
+  words.forEach(function(w){
+    var test=line+(line?' ':'')+w;
+    if(ctx.measureText(test).width>140){
+      ctx.fillText(line,10,y);y+=14;line=w;
+    }else{line=test;}
+  });
+  if(line)ctx.fillText(line,10,y);
+  /* Category */
+  ctx.fillStyle='#7a7068';
+  ctx.font='9px sans-serif';
+  ctx.fillText(category,10,100);
+  /* Date */
+  ctx.fillStyle='#b8922a';
+  ctx.font='8px sans-serif';
+  ctx.fillText(date,10,112);
+  return canvas.toDataURL();
+}
+/* Generate covers for on-file docs */
+(function(){
+  var docs=document.querySelectorAll('#docs-onfile .doc-card');
+  docs.forEach(function(card){
+    var icon=card.querySelector('.doc-icon');
+    var title=card.querySelector('.doc-info h4');
+    var cat=card.querySelector('.cat-tag');
+    var dateSp=card.querySelector('.doc-meta span[style]');
+    if(icon&&title){
+      var coverUrl=generateDocCover(title.textContent,cat?cat.textContent:'',dateSp?dateSp.textContent:'');
+      icon.innerHTML='<img src="'+coverUrl+'" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">';
+    }
+  });
+  var pending=document.querySelectorAll('#docs-pending .doc-card');
+  pending.forEach(function(card){
+    var icon=card.querySelector('.doc-icon');
+    var title=card.querySelector('.doc-info h4');
+    if(icon&&title){
+      var coverUrl=generateDocCover(title.textContent,'NEEDED','Pending');
+      icon.innerHTML='<img src="'+coverUrl+'" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">';
+    }
+  });
+})();
+
+/* ===== TERMS & CONDITIONS (Non-reversible) ===== */
+function acceptTerms(cb){
+  if(cb.checked){
+    cb.disabled=true;
+    cb.style.cursor='not-allowed';
+    var now=new Date().toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+    document.getElementById('tc-status').innerHTML='<span class="badge badge-green">ACCEPTED</span> <span style="font-size:12px;color:var(--muted);margin-left:8px;">Accepted by Peter T. Mills on '+now+'</span>';
+    try{localStorage.setItem('pm_tc_accepted',JSON.stringify({accepted:true,date:now}));}catch(e){}
+    showToast('Terms & Conditions accepted. This cannot be undone.','success');
+  }
+}
+/* Restore T&C state */
+(function(){
+  try{
+    var saved=localStorage.getItem('pm_tc_accepted');
+    if(saved){
+      var data=JSON.parse(saved);
+      if(data.accepted){
+        var cb=document.getElementById('tc-checkbox');
+        cb.checked=true;cb.disabled=true;cb.style.cursor='not-allowed';
+        document.getElementById('tc-status').innerHTML='<span class="badge badge-green">ACCEPTED</span> <span style="font-size:12px;color:var(--muted);margin-left:8px;">Accepted by Peter T. Mills on '+data.date+'</span>';
+      }
+    }
+  }catch(e){}
+})();
+
+/* ===== SMS SETTINGS ===== */
+function saveSmsSettings(){
+  var phone=document.getElementById('peter-phone').value.trim();
+  var email=document.getElementById('peter-email').value.trim();
+  if(!phone&&!email){showToast('Please enter at least a phone number or email.','error');return;}
+  try{localStorage.setItem('pm_sms_settings',JSON.stringify({phone:phone,email:email}));}catch(e){}
+  showToast('SMS notification settings saved. Peter will receive message copies from SeedXchange.','success');
+}
+(function(){
+  try{
+    var saved=localStorage.getItem('pm_sms_settings');
+    if(saved){
+      var data=JSON.parse(saved);
+      if(data.phone)document.getElementById('peter-phone').value=data.phone;
+      if(data.email)document.getElementById('peter-email').value=data.email;
+    }
   }catch(e){}
 })();
 
