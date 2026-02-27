@@ -23,10 +23,10 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;}
 .ambient-glow{position:absolute;inset:0;z-index:110;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0.45) 0%,rgba(220,0,0,0.3) 20%,rgba(160,0,0,0.15) 45%,rgba(80,0,0,0.05) 70%,transparent 100%);transition:opacity 2.5s ease;pointer-events:none;}
 .ambient-glow.active{opacity:1;}
 .hirecar-title-overlay{position:absolute;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1.2vw,14px);pointer-events:none;}
-.hirecar-logo-img{width:clamp(280px,65vw,700px);max-width:90vw;height:auto;filter:brightness(0) invert(1);will-change:opacity;transition:opacity 1.5s ease-out;}
+.hirecar-logo-img{width:clamp(280px,65vw,700px);max-width:90vw;height:auto;filter:brightness(0) invert(1);will-change:opacity;transition:opacity 2.5s ease-out;}
 .hirecar-logo-img.fade-out{opacity:0;}
 .hirecar-subtitle-text{font-family:'Playfair Display',serif;font-size:clamp(14px,2.5vw,22px);letter-spacing:clamp(6px,1.5vw,12px);text-transform:uppercase;color:#e31e2d;text-align:center;will-change:text-shadow,filter;text-shadow:0 0 10px rgba(227,30,45,.4),0 0 20px rgba(200,0,0,.2);transition:text-shadow 2.5s ease,filter 2.5s ease;margin-top:clamp(10px,2vw,20px);}
-.hirecar-subtitle-text.glow-red{text-shadow:0 0 10px #ff0000,0 0 25px #ff0000,0 0 50px #ff0000,0 0 100px rgba(255,0,0,.9),0 0 200px rgba(255,0,0,.8),0 0 350px rgba(220,0,0,.6),0 0 550px rgba(180,0,0,.45),0 0 800px rgba(150,0,0,.3),0 0 1100px rgba(120,0,0,.18),0 0 1500px rgba(100,0,0,.10);filter:brightness(2.8);}
+.hirecar-subtitle-text.glow-red{text-shadow:0 0 10px #ff0000,0 0 25px #ff0000,0 0 55px #ff0000,0 0 110px rgba(255,0,0,1),0 0 220px rgba(255,0,0,.9),0 0 400px rgba(240,0,0,.7),0 0 650px rgba(200,0,0,.5),0 0 1000px rgba(170,0,0,.35),0 0 1400px rgba(140,0,0,.22),0 0 1800px rgba(120,0,0,.12),0 0 2200px rgba(100,0,0,.06);filter:brightness(3.5);}
 .cwk-logo-img{position:fixed;z-index:10;top:35%;left:50%;transform:translate(-50%,-50%);width:clamp(180px,45vw,420px);max-width:80vw;height:auto;opacity:0;transition:opacity 2s ease;filter:drop-shadow(0 0 16px rgba(227,30,45,.4));}
 .cwk-logo-img.visible{opacity:1;}
 .ph2-container{position:fixed;z-index:10;bottom:clamp(6vh,10vh,14vh);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;width:90vw;max-width:520px;}
@@ -949,7 +949,7 @@ textarea.ev-input{min-height:80px;resize:vertical;}
      ANIMATION SEQUENCE
      0.0s  Black screen, HIRECAR white logo + "MEMBER SERVICES" white
      1.5s  "MEMBER SERVICES" intensifies red (letters radiate ambient light)
-     5.0s  HIRECAR logo particle disintegration
+     5.0s  HIRECAR logo fades out as red glow intensifies
      5.5s  CWK logo dissolves in at HIRECAR's position + rain EXPLODES from center
      6.5s  Subtitle text fades out
      8.5s  "ENTER ACCESS CODE" dissolves in (3s after CWK)
@@ -961,9 +961,9 @@ textarea.ev-input{min-height:80px;resize:vertical;}
     subtitleText.classList.add('glow-red');
   },1500);
 
-  /* 5.0s — HIRECAR logo particle disintegration */
+  /* 5.0s — HIRECAR logo fades out smoothly as red glow intensifies */
   setTimeout(function(){
-    disintegrateLogo(logoImg,function(){/* particles done */});
+    logoImg.classList.add('fade-out');
   },5000);
 
   /* 5.5s — Matrix rain starts from center, slow, few drops */
